@@ -26,9 +26,9 @@ class Database
 
     public function insert($table, $columns, $values)
     {
-        $columns = mysqli_real_escape_string($this->connection, implode('\', \'', $columns));
-        $values = mysqli_real_escape_string($this->connection, implode('\', \'', $values));
+        $columns = implode(', ', $columns);
+        $values = implode('\', \'', $values);
 
-        return mysqli_query($this->connection, "INSERT INTO {$table} ('{$columns}') VALUES('{$values}')");
+        return mysqli_query($this->connection, "INSERT INTO {$table} ({$columns}) VALUES('{$values}')");
     }
 }
