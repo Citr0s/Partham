@@ -2,12 +2,26 @@
 
 class Deploy
 {
-    public static function invoke($appName)
+    private $allowedApps = ['chat'];
+
+    public function invoke($appName)
     {
+        if (!in_array($appName, $this->allowedApps))
+            return;
+
+        echo "<pre>Running...</pre>";
+
         $output = shell_exec("cd /var/www/{$appName} && sudo bash deploy.sh 2>&1");
 
-        /*sudo -u root -S bash deploy.sh 2>&1*/
+        if (is_null($output)) {
+            echo "<pre>Something went wrong while executing the deploy script.</pre>";
+            return;
+        }
 
         echo "<pre>{$output}</pre>";
+
+        $prettyName = ucfirst($appName);
+
+        echo "<pre>{$prettyName} has been deployed successfully.</pre>";
     }
 }

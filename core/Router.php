@@ -12,7 +12,8 @@ class Router
             unset($request[0]);
             $request = array_values($request);
 
-            Deploy::invoke($request[0]);
+            $deployer = new Deploy();
+            $deployer->invoke($request[0]);
         }
     }
 }
