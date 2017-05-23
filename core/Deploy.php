@@ -14,21 +14,11 @@ class Deploy
         if (!in_array($appName, $this->allowedApps))
             return;
 
-        echo "<pre>Running...</pre>";
-
         $output = shell_exec("cd /var/www/{$appName} && sudo bash deploy.sh 2>&1");
 
-        if (is_null($output)) {
-            echo "<pre>Something went wrong while executing the deploy script.</pre>";
+        if (is_null($output))
             return;
-        }
 
         $this->database->insert('deploys', ['log', 'request', 'status'], [$output, $request, 'success']);
-
-        echo "<pre>{$output}</pre>";
-
-        $prettyName = ucfirst($appName);
-
-        echo "<pre>{$prettyName} has been deployed successfully.</pre>";
     }
 }
