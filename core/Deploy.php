@@ -2,7 +2,7 @@
 
 class Deploy
 {
-    private $allowedApps = ['chat'];
+    private $allowedApps = ['chat', 'ci'];
 
     public function invoke($appName)
     {
