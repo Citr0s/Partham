@@ -8,11 +8,13 @@ class Router
             return header('Location: web');
         }
 
-        if ($request[0] === 'deploy' && ($method === 'GET' || $method === 'POST')) {
+        var_dump(file_get_contents('php://input'));
+
+        if ($request[0] === 'deploy' && ($method === 'POST')) {
             unset($request[0]);
             $request = array_values($request);
 
-            $deployer = new Deploy();
+            $deployer = new Deploy(file_get_contents('php://input'));
             $deployer->invoke($request[0]);
         }
     }
