@@ -8,8 +8,6 @@ class Router
             return header('Location: web');
         }
 
-        var_dump(file_get_contents('php://input'));
-
         if ($request[0] === 'deploy' && ($method === 'POST')) {
             unset($request[0]);
             $request = array_values($request);
