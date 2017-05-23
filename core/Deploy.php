@@ -6,6 +6,6 @@ class Deploy
     {
         $output = shell_exec('ls -lsa' /*"cd /var/www/{$appName} && sudo -u root -S bash deploy.sh 2>&1"*/);
 
-        var_dump($output);
+        echo "<pre>{$output}</pre>";
     }
 }
