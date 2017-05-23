@@ -12,8 +12,8 @@ class Router
             unset($request[0]);
             $request = array_values($request);
 
-            $deployer = new Deploy(file_get_contents('php://input'));
-            $deployer->invoke($request[0]);
+            $deployer = new Deploy();
+            $deployer->invoke($request[0], file_get_contents('php://input'));
         }
     }
 }

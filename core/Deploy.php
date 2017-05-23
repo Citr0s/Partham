@@ -4,13 +4,12 @@ class Deploy
 {
     private $allowedApps = ['chat', 'ci'];
 
-    function __construct($requestBody)
+    function __construct()
     {
         $this->database = new Database();
-        $this->requestBody = $requestBody;
     }
 
-    public function invoke($appName)
+    public function invoke($appName, $request)
     {
         if (!in_array($appName, $this->allowedApps))
             return;
@@ -24,7 +23,7 @@ class Deploy
             return;
         }
 
-        $this->database->insert('deploys', ['log', 'request', 'status'], [$output, $this->requestBody, 'success']);
+        $this->database->insert('deploys', ['log', 'request', 'status'], [$output, $request, 'success']);
 
         echo "<pre>{$output}</pre>";
 
