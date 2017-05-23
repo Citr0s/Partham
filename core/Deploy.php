@@ -4,7 +4,7 @@ class Deploy
 {
     public static function invoke($appName)
     {
-        $output = shell_exec("cd /var/www/{$appName} && bash deploy.sh 2>&1");
+        $output = shell_exec("cd /var/www/{$appName} && sudo bash deploy.sh 2>&1");
 
         /*sudo -u root -S bash deploy.sh 2>&1*/
 
