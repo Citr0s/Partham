@@ -8,7 +8,6 @@ class Deploy
 
         /*sudo -u root -S bash deploy.sh 2>&1*/
 
-        echo " < pre>{
-        $output}</pre > ";
+        echo "<pre>{$output}</pre>";
     }
 }
