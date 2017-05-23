@@ -1,4 +1,4 @@
-<?php namespace Partham\Core;
+<?php namespace Partham\core;
 
 class Deploy
 {
