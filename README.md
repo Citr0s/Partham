@@ -1,0 +1,1 @@
+<a href="https://travis-ci.org/miloszmd/Partham"><img src="https://travis-ci.org/miloszmd/Partham.svg?branch=master"></a>
