@@ -1,13 +1,14 @@
-<?php namespace Partham;
+<?php namespace Partham\Core;
 
-
-class Server {
+class Server
+{
     function __construct()
     {
 
     }
 
-    public function info() {
+    public function info()
+    {
         return 'Hello World';
     }
 }
