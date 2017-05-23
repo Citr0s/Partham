@@ -1,8 +1,10 @@
 <?php
-use Partham\Server;
+use Partham\core\Server;
 
-class StrategyDuckTest extends PHPUnit_Framework_TestCase {
-    public function testDogDuck() {
+class StrategyDuckTest extends PHPUnit\Framework\TestCase
+{
+    public function testDogDuck()
+    {
         $server = new Server();
         $expected = "Hello World";
 
