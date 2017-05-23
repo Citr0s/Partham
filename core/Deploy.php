@@ -4,6 +4,11 @@ class Deploy
 {
     private $allowedApps = ['chat', 'ci'];
 
+    function __construct()
+    {
+        $this->database = new Database();
+    }
+
     public function invoke($appName)
     {
         if (!in_array($appName, $this->allowedApps))
@@ -17,6 +22,8 @@ class Deploy
             echo "<pre>Something went wrong while executing the deploy script.</pre>";
             return;
         }
+
+        $this->database->insert('deploys', 'log', $output);
 
         echo "<pre>{$output}</pre>";
 
