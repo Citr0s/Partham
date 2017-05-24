@@ -32,12 +32,22 @@ class Database
         return $this->connection->query("INSERT INTO {$table} ({$columns}) VALUES('{$values}')");
     }
 
-    public function update($table, $conditions, $columns, $values)
+    public function update($table, $conditions, $values)
     {
-        $columns = implode(', ', $columns);
-        $values = implode('\', \'', $values);
-        $conditions = implode('\' = \'', $conditions);
+        $conditionsString = "";
+        foreach ($conditions as $column => $condition) {
+            $conditionsString .= "{$column} = '{$condition}'";
+        }
 
-        return $this->connection->query("UPDATE {$table} ({$columns}) SET ('{$values}') WHERE '{$conditions}'");
+        $updateArray = [];
+        foreach ($values as $column => $value) {
+            $updateArray[] = "{$column} = '{$value}'";
+        }
+
+        $updateString = implode(", ", $updateArray);
+
+        echo "UPDATE {$table} SET {$updateString} WHERE {$conditionsString}";
+
+        return $this->connection->query("UPDATE {$table} SET {$updateString} WHERE {$conditionsString}");
     }
 }
