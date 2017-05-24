@@ -41,6 +41,7 @@ class Database
 
         $updateArray = [];
         foreach ($values as $column => $value) {
+            $value = $this->connection->real_escape_string($value);
             $updateArray[] = "{$column} = '{$value}'";
         }
 
