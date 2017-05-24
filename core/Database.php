@@ -8,12 +8,12 @@ class Database
 
     function __construct()
     {
-        $this->connection = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
+        $this->connection = new \mysqli(HOST, USERNAME, PASSWORD, DATABASE);
     }
 
     public function getAll($table)
     {
-        return mysqli_query($this->connection, "SELECT * FROM {$table}");
+        return $this->connection->query("SELECT * FROM {$table}");
     }
 
     public function get($columns, $table, $conditions, $limit = 1)
@@ -21,7 +21,7 @@ class Database
         $columns = implode(', ', $columns);
         $conditions = implode(' = ', $conditions);
 
-        return mysqli_query($this->connection, "SELECT {$columns} FROM {$table} WHERE {$conditions} LIMIT {$limit}");
+        return $this->connection->query("SELECT {$columns} FROM {$table} WHERE {$conditions} LIMIT {$limit}");
     }
 
     public function insert($table, $columns, $values)
@@ -29,6 +29,6 @@ class Database
         $columns = implode(', ', $columns);
         $values = implode('\', \'', $values);
 
-        return mysqli_query($this->connection, "INSERT INTO {$table} ({$columns}) VALUES('{$values}')");
+        return $this->connection->query("INSERT INTO {$table} ({$columns}) VALUES('{$values}')");
     }
 }
