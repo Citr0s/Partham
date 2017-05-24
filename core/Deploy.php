@@ -19,8 +19,9 @@ class Deploy
         if (is_null($output))
             return;
 
-        if (strpos($request, 'payload=') >= 0)
+        if (strpos($request, 'payload=') >= 0) {
             $request = str_replace('payload=', '', urldecode($request));
+        }
 
         $this->database->insert('deploys', ['log', 'request', 'status'], [$output, $request, 'success']);
     }
