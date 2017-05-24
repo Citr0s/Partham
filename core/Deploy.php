@@ -13,12 +13,14 @@ class Deploy
     {
         if (!in_array($appName, $this->allowedApps))
             return;
-        
 
         $output = shell_exec("cd /var/www/{$appName} && sudo bash deploy.sh 2>&1");
 
         if (is_null($output))
             return;
+
+        if (strpos($request, 'payload='))
+            $request = str_replace('payload=', '', urldecode($request));
 
         $this->database->insert('deploys', ['log', 'request', 'status'], [$output, $request, 'success']);
     }
