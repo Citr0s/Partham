@@ -16,6 +16,8 @@ class Deploy
 
         $output = shell_exec("cd /var/www/{$appName} && sudo bash deploy.sh 2>&1");
 
+        $this->database->insert('deploys', ['log', 'request', 'status'], [$output, $request, 'maybe']);
+
         if (is_null($output))
             return;
 
