@@ -38,6 +38,7 @@ $deploys = $controller->deploys();
 <style>
     .deploys {
         width: 100%;
+        border: 1px solid #999;
     }
 
     .deploys th, .deploys td {
