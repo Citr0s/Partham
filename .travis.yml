@@ -12,7 +12,4 @@ script: phpunit --bootstrap vendor/autoload.php --colors=always tests/
 notifications:
   email: false
   webhooks:
-    urls:
-      - https://ci.miloszdura.com/deploy/ci
-    on_success: always
-    on_failure: never
+    - https://ci.miloszdura.com/deploy/ci

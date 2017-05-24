@@ -20,11 +20,21 @@ class DeployService
             return;
 
         $identifier = GuidHelper::newGuid();
+        $message = 'deploy started...';
 
         if (strpos($request, 'payload=') >= 0)
             $request = str_replace('payload=', '', urldecode($request));
 
-        $this->database->insert('deploys', ['log', 'request', 'status', 'startTime', 'identifier', 'app'], ['deploy started...', $request, 'started', date("Y-m-d H:i:s"), $identifier, $appName]);
+        $decodedRequest = json_decode($request, true);
+        $buildFailed = $decodedRequest['state'] !== 'passed';
+
+        if ($buildFailed)
+            $message = 'build failed';
+
+        $this->database->insert('deploys', ['log', 'request', 'status', 'startTime', 'identifier', 'app'], [$message, $request, 'started', date("Y-m-d H:i:s"), $identifier, $appName]);
+
+        if ($buildFailed)
+            return;
 
         $output = shell_exec("cd /var/www/{$appName} && sudo bash deploy.sh 2>&1");
 

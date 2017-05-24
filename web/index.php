@@ -16,6 +16,7 @@ $deploys = $controller->deploys();
     <tr>
         <th>App</th>
         <th>Last Build Duration</th>
+        <th>Last Build Status</th>
         <th>Last Deploy Duration</th>
         <th>Last Deploy Status</th>
     </tr>
@@ -26,6 +27,7 @@ $deploys = $controller->deploys();
         <tr>
             <td><?php echo $deploy->appName; ?></td>
             <td><?php echo $deploy->lastBuildDuration; ?>s</td>
+            <td><?php echo $deploy->lastBuildStatus; ?></td>
             <td><?php echo $deploy->lastDeployDuration; ?>s</td>
             <td><?php echo $deploy->lastDeployStatus; ?></td>
         </tr>
