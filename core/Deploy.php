@@ -13,6 +13,7 @@ class Deploy
     {
         if (!in_array($appName, $this->allowedApps))
             return;
+        
 
         $output = shell_exec("cd /var/www/{$appName} && sudo bash deploy.sh 2>&1");
 
