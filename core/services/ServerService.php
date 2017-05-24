@@ -1,6 +1,6 @@
-<?php namespace Partham\core;
+<?php namespace Partham\core\services;
 
-class Server
+class ServerService
 {
     function __construct()
     {

@@ -1,12 +1,14 @@
-<?php namespace Partham\core;
+<?php namespace Partham\core\services;
 
-class Deploy
+use Partham\core\helpers\GuidHelper;
+
+class DeployService
 {
     private $allowedApps = ['chat', 'ci'];
 
     function __construct()
     {
-        $this->database = new Database();
+        $this->database = new DatabaseService();
     }
 
     public function invoke($appName, $request)
@@ -14,7 +16,7 @@ class Deploy
         if (!in_array($appName, $this->allowedApps))
             return;
 
-        $identifier = Helpers::GUID();
+        $identifier = GuidHelper::newGuid();
 
         if (strpos($request, 'payload=') >= 0)
             $request = str_replace('payload=', '', urldecode($request));

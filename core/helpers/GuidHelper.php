@@ -1,9 +1,9 @@
-<?php namespace Partham\core;
+<?php namespace Partham\core\helpers;
 
 
-class Helpers
+class GuidHelper
 {
-    public static function GUID()
+    public static function newGuid()
     {
         if (function_exists('com_create_guid') === true) {
             return trim(com_create_guid(), '{}');

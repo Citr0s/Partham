@@ -1,8 +1,8 @@
-<?php namespace Partham\Core;
+<?php namespace Partham\core\services;
 
-require __DIR__ . '/../credentials.php';
+require __DIR__ . '/../../credentials.php';
 
-class Database
+class DatabaseService
 {
     public $connection;
 
@@ -11,9 +11,9 @@ class Database
         $this->connection = new \mysqli(HOST, USERNAME, PASSWORD, DATABASE);
     }
 
-    public function getAll($table)
+    public function getAll($table, $limit = 1000)
     {
-        return $this->connection->query("SELECT * FROM {$table}");
+        return $this->connection->query("SELECT * FROM {$table} LIMIT {$limit}");
     }
 
     public function get($columns, $table, $conditions, $limit = 1)

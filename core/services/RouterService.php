@@ -1,6 +1,6 @@
-<?php namespace Partham\core;
+<?php namespace Partham\core\services;
 
-class Router
+class RouterService
 {
     public static function start($request, $method)
     {
@@ -12,7 +12,7 @@ class Router
             unset($request[0]);
             $request = array_values($request);
 
-            $deployer = new Deploy();
+            $deployer = new DeployService();
             $deployer->invoke($request[0], file_get_contents('php://input'));
         }
     }
