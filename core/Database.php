@@ -31,4 +31,13 @@ class Database
 
         return $this->connection->query("INSERT INTO {$table} ({$columns}) VALUES('{$values}')");
     }
+
+    public function update($table, $conditions, $columns, $values)
+    {
+        $columns = implode(', ', $columns);
+        $values = implode('\', \'', $values);
+        $conditions = implode('\' = \'', $conditions);
+
+        return $this->connection->query("UPDATE {$table} ({$columns}) SET ('{$values}') WHERE '{$conditions}'");
+    }
 }

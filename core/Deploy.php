@@ -14,11 +14,11 @@ class Deploy
         if (!in_array($appName, $this->allowedApps))
             return;
 
-        $this->database->insert('deploys', ['log', 'request', 'status', 'startTime'], ['nothing yet...', $request, 'before', date("Y-m-d H:i:s")]);
+        $uniqueId = Helpers::GUID();
+
+        $this->database->insert('deploys', ['log', 'request', 'status', 'startTime', 'identifier'], ['build started...', $request, 'started', date("Y-m-d H:i:s"), $uniqueId]);
 
         $output = shell_exec("cd /var/www/{$appName} && sudo bash deploy.sh 2>&1");
-
-        $this->database->insert('deploys', ['log', 'request', 'status', 'startTime'], [$output, $request, 'maybe', date("Y-m-d H:i:s")]);
 
         if (is_null($output))
             return;
@@ -26,6 +26,6 @@ class Deploy
         if (strpos($request, 'payload=') >= 0)
             $request = str_replace('payload=', '', urldecode($request));
 
-        $this->database->insert('deploys', ['log', 'request', 'status', 'startTime'], [$output, $request, 'success', date("Y-m-d H:i:s")]);
+        $this->database->update('deploys', ['identifier' => $uniqueId], ['log', 'request', 'status', 'endTime'], [$output, $request, 'success', date("Y-m-d H:i:s")]);
     }
 }
