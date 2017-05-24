@@ -20,8 +20,6 @@ class Deploy
 
         $this->database->insert('deploys', ['log', 'request', 'status', 'startTime'], [$output, $request, 'maybe', date("Y-m-d H:i:s")]);
 
-        var_dump($output);
-
         if (is_null($output))
             return;
 
