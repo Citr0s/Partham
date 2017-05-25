@@ -18,9 +18,9 @@ class DeployModelMapper
         $deployModel->lastBuildStatus = self::mapState($parsedRequest, $deploy->log);
         $deployModel->lastBuildStatusClass = self::mapBuildStateClass($parsedRequest, $deploy->log);
         $deployModel->lastDeployDuration = self::mapDuration($deploy->startTime, $deploy->endTime);
-        $deployModel->lastDeployStatus = $deploy->status;
-        $deployModel->lastDeployStatusClass = self::mapDeployStateClass($deploy);
-        $deployModel->deployFinishTime = date('G:i:s d-M-Y', strtotime($deploy->endTime));
+        $deployModel->lastDeployStatus = is_null($deploy->endTime) ? "-" : $deploy->status;
+        $deployModel->lastDeployStatusClass = is_null($deploy->endTime) ? "" : self::mapDeployStateClass($deploy);
+        $deployModel->deployFinishTime = self::mapEndTime($deploy->endTime);
 
         return $deployModel;
     }
@@ -32,7 +32,7 @@ class DeployModelMapper
 
     private static function mapDuration($timeOne, $timeTwo)
     {
-        return (is_null($timeOne) || is_null($timeTwo)) ? "N/A" : (strtotime($timeTwo) - strtotime($timeOne)) . "s";
+        return (is_null($timeOne) || is_null($timeTwo)) ? "-" : (strtotime($timeTwo) - strtotime($timeOne)) . "s";
     }
 
     private static function mapBuildStateClass($state, $log)
@@ -58,5 +58,13 @@ class DeployModelMapper
             return 'failed';
 
         return '';
+    }
+
+    private static function mapEndTime($endTime)
+    {
+        if (is_null($endTime))
+            return '-';
+
+        return date('G:i:s d-M-Y', strtotime($endTime));
     }
 }
