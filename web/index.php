@@ -48,6 +48,7 @@ $deploys = $controller->deploys();
     .deploys th, .deploys td {
         border: 1px solid #ccc;
         padding: 5px;
+        text-align: center;
     }
 
     .deploys td.success, .deploys td.passed {
