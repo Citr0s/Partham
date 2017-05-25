@@ -15,9 +15,9 @@ $deploys = $controller->deploys();
 <table class="deploys">
     <tr>
         <th>App</th>
-        <th>Last Build Duration</th>
+        <th>Last Build Duration (seconds)</th>
         <th>Last Build Status</th>
-        <th>Last Deploy Duration</th>
+        <th>Last Deploy Duration (seconds)</th>
         <th>Last Deploy Status</th>
     </tr>
     <?php
@@ -26,9 +26,9 @@ $deploys = $controller->deploys();
         ?>
         <tr>
             <td><?php echo $deploy->appName; ?></td>
-            <td><?php echo $deploy->lastBuildDuration; ?>s</td>
+            <td><?php echo $deploy->lastBuildDuration; ?></td>
             <td><?php echo $deploy->lastBuildStatus; ?></td>
-            <td><?php echo $deploy->lastDeployDuration; ?>s</td>
+            <td><?php echo $deploy->lastDeployDuration; ?></td>
             <td><?php echo $deploy->lastDeployStatus; ?></td>
         </tr>
         <?php
