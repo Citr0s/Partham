@@ -14,7 +14,7 @@ class DeployModelMapper
 
         $parsedRequest = json_decode($deploy->request, true);
 
-        $deployModel->lastBuildDuration = self::mapDuration(strtotime($parsedRequest['started_at']), strtotime($parsedRequest['finished_at']));
+        $deployModel->lastBuildDuration = self::mapDuration($parsedRequest['started_at'], $parsedRequest['finished_at']);
         $deployModel->lastBuildStatus = self::mapState($parsedRequest, $deploy->log);
         $deployModel->lastBuildStatusClass = self::mapBuildStateClass($parsedRequest);
         $deployModel->lastDeployDuration = self::mapDuration($deploy->startTime, $deploy->endTime);
@@ -47,7 +47,7 @@ class DeployModelMapper
         if (StringHelper::contains('success', $state->status))
             return 'success';
 
-        if (StringHelper::contains('started', $state->log))
+        if (StringHelper::contains('started', $state->status))
             return 'started';
 
         if (StringHelper::contains('failed', $state->log))
