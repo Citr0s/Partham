@@ -16,7 +16,7 @@ class DeployModelMapper
 
         $deployModel->lastBuildDuration = self::mapDuration($parsedRequest['started_at'], $parsedRequest['finished_at']);
         $deployModel->lastBuildStatus = self::mapState($parsedRequest, $deploy->log);
-        $deployModel->lastBuildStatusClass = self::mapBuildStateClass($parsedRequest);
+        $deployModel->lastBuildStatusClass = self::mapBuildStateClass($parsedRequest, $deploy->log);
         $deployModel->lastDeployDuration = self::mapDuration($deploy->startTime, $deploy->endTime);
         $deployModel->lastDeployStatus = $deploy->status;
         $deployModel->lastDeployStatusClass = self::mapDeployStateClass($deploy);
@@ -35,10 +35,13 @@ class DeployModelMapper
         return (is_null($timeOne) || is_null($timeTwo)) ? "N/A" : (strtotime($timeTwo) - strtotime($timeOne)) . "s";
     }
 
-    private static function mapBuildStateClass($state)
+    private static function mapBuildStateClass($state, $log)
     {
         if (StringHelper::contains('passed', $state['state']))
             return 'success';
+
+        if (StringHelper::contains('failed', $log))
+            return 'failed';
 
         return '';
     }
