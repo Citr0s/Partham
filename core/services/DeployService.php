@@ -6,7 +6,7 @@ use Partham\web\mappers\DeployModelMapper;
 
 class DeployService
 {
-    private $allowedApps = ['chat', 'ci'];
+    private $allowedApps = ['chat', 'ci', 'game'];
 
     function __construct()
     {
