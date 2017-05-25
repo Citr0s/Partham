@@ -20,6 +20,7 @@ class DeployModelMapper
         $deployModel->lastDeployDuration = self::mapDuration($deploy->startTime, $deploy->endTime);
         $deployModel->lastDeployStatus = $deploy->status;
         $deployModel->lastDeployStatusClass = self::mapDeployStateClass($deploy);
+        $deployModel->deployFinishTime = date('G:i:s d-M-Y', strtotime($deploy->endTime));
 
         return $deployModel;
     }

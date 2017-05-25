@@ -11,9 +11,14 @@ class DatabaseService
         $this->connection = new \mysqli(HOST, USERNAME, PASSWORD, DATABASE);
     }
 
-    public function getAll($table, $limit = 1000)
+    public function getAll($table, $reverse = false, $limit = 1000)
     {
-        return $this->connection->query("SELECT * FROM {$table} LIMIT {$limit}");
+        $orderBy = 'ORDER BY id DESC';
+
+        if ($reverse)
+            $orderBy = 'ORDER BY id ASC';
+
+        return $this->connection->query("SELECT * FROM {$table} {$orderBy} LIMIT {$limit}");
     }
 
     public function get($columns, $table, $conditions, $limit = 1)

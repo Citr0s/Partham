@@ -19,6 +19,7 @@ $deploys = $controller->deploys();
         <th>Last Build Status</th>
         <th>Last Deploy Duration (seconds)</th>
         <th>Last Deploy Status</th>
+        <th>Finished</th>
     </tr>
     <?php
 
@@ -30,6 +31,7 @@ $deploys = $controller->deploys();
             <td class="<?php echo $deploy->lastBuildStatusClass; ?>"><?php echo $deploy->lastBuildStatus; ?></td>
             <td><?php echo $deploy->lastDeployDuration; ?></td>
             <td class="<?php echo $deploy->lastDeployStatusClass; ?>"><?php echo $deploy->lastDeployStatus; ?></td>
+            <td><?php echo $deploy->deployFinishTime; ?></td>
         </tr>
         <?php
     }

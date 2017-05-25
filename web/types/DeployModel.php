@@ -9,4 +9,5 @@ class DeployModel
     public $lastDeployDuration;
     public $lastDeployStatus;
     public $lastDeployStatusClass;
+    public $deployFinishTime;
 }
