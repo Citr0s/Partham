@@ -27,9 +27,9 @@ $deploys = $controller->deploys();
         <tr>
             <td><?php echo $deploy->appName; ?></td>
             <td><?php echo $deploy->lastBuildDuration; ?></td>
-            <td><?php echo $deploy->lastBuildStatus; ?></td>
+            <td class="<?php echo $deploy->lastBuildStatusClass; ?>"><?php echo $deploy->lastBuildStatus; ?></td>
             <td><?php echo $deploy->lastDeployDuration; ?></td>
-            <td><?php echo $deploy->lastDeployStatus; ?></td>
+            <td class="<?php echo $deploy->lastDeployStatusClass; ?>"><?php echo $deploy->lastDeployStatus; ?></td>
         </tr>
         <?php
     }
@@ -46,5 +46,17 @@ $deploys = $controller->deploys();
     .deploys th, .deploys td {
         border: 1px solid #ccc;
         padding: 5px;
+    }
+
+    .deploys td.success, .deploys td.passed {
+        background-color: #5cb85c;
+    }
+
+    .deploys td.started {
+        background-color: #f7ecb5;
+    }
+
+    .deploys td.failed {
+        background-color: #c9302c;
     }
 </style>
