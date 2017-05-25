@@ -14,8 +14,8 @@ class DeployModelMapper
         $parsedRequest = json_decode($deploy->request, true);
 
         $deployModel->lastBuildDuration = strtotime($parsedRequest['finished_at']) - strtotime($parsedRequest['started_at']);
-        $deployModel->lastBuildStatus = $parsedRequest['state'];
-        $deployModel->lastDeployDuration = strtotime($deploy->endTime) - strtotime($deploy->startTime);
+        $deployModel->lastBuildStatus = is_null($parsedRequest) ? $deploy->request : $parsedRequest['state'];
+        $deployModel->lastDeployDuration = (is_null($deploy->startTime) || is_null($deploy->endTime)) ? "" : strtotime($deploy->endTime) - strtotime($deploy->startTime);
         $deployModel->lastDeployStatus = $deploy->status;
 
         return $deployModel;
