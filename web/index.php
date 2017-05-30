@@ -6,11 +6,28 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $controller = new DashboardController();
 $deploys = $controller->deploys();
+$server = $controller->server();
 
 ?>
 
-<h1>Hello World</h1>
-<p>This is an awesome landing page!</p>
+<div class="row">
+    <div class="col-md-6">
+        <h1>Hello World</h1>
+        <p>This is an awesome landing page!</p>
+    </div>
+    <div class="col-md-6">
+        <div class="progress-bar-wrapper">
+            <div class="progress-bar" style="width:<?php echo $server['cpu']; ?>%;"
+                 data-usage="<?php echo $server['cpu']; ?>"><?php echo $server['cpu']; ?>%
+            </div>
+        </div>
+        <div class="progress-bar-wrapper">
+            <div class="progress-bar" style="width:<?php echo $server['memory']; ?>%;"
+                 data-usage="<?php echo $server['memory']; ?>"><?php echo $server['memory']; ?>%
+            </div>
+        </div>
+    </div>
+</div>
 
 <table class="deploys">
     <tr>
@@ -62,4 +79,59 @@ $deploys = $controller->deploys();
     .deploys td.failed {
         background-color: #c9302c;
     }
+
+    .row {
+
+    }
+
+    .row:after {
+        clear: both;
+    }
+
+    .col-md-6 {
+        position: relative;
+        float: left;
+        width: 50%;
+    }
+
+    @media (max-width: 900px) {
+        .col-md-6 {
+            width: 100%;
+        }
+    }
+
+    .progress-bar-wrapper {
+        border: 1px solid #ccc;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .progress-bar {
+        width: 0;
+        background-color: #27ae60;
+        padding: 5px;
+    }
+
+    .progress-bar.warn {
+        background-color: #f1c40f;
+    }
+
+    .progress-bar.danger {
+        background-color: #e74c3c;
+    }
 </style>
+
+<script>
+    var usages = document.getElementsByClassName('progress-bar');
+
+    for (var i = 0; i < usages.length; i++) {
+        if (usages[i].getAttribute('data-usage') > 90)
+            usages[i].classList.add('danger');
+        else if (usages[i].getAttribute('data-usage') > 70)
+            usages[i].classList.add('warn');
+        else {
+            usages[i].classList.remove('warn');
+            usages[i].classList.remove('danger');
+        }
+    }
+</script>
