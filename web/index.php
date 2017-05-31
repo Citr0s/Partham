@@ -1,6 +1,6 @@
 <?php
 
-use Partham\web\controllers\DashboardController;
+use Partham\core\controllers\DashboardController;
 
 require __DIR__ . '/../vendor/autoload.php';
 

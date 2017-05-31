@@ -1,8 +1,8 @@
-<?php namespace Partham\web\mappers;
+<?php namespace Partham\core\mappers;
 
 use Partham\core\helpers\StringHelper;
 use Partham\core\types\Deploy;
-use Partham\web\types\DeployModel;
+use Partham\core\types\DeployModel;
 
 class DeployModelMapper
 {

@@ -1,4 +1,4 @@
-<?php namespace Partham\web\types;
+<?php namespace Partham\core\types;
 
 class DeployModel
 {

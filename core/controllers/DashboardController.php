@@ -1,4 +1,4 @@
-<?php namespace Partham\web\controllers;
+<?php namespace Partham\core\controllers;
 
 use Partham\core\services\DeployService;
 use Partham\core\services\ServerService;

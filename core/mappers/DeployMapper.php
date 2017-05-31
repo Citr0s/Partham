@@ -4,7 +4,6 @@ use Partham\core\types\Deploy;
 
 class DeployMapper
 {
-
     public static function map($record)
     {
         $deploy = new Deploy();
