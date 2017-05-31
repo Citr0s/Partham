@@ -2,3 +2,5 @@
 vendor/
 .idea/
 credentials.php
+node_modules/
+dist/

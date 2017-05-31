@@ -1,0 +1,62 @@
+.deploys {
+  width: 100%;
+  border: 1px solid #999;
+}
+
+.deploys th, .deploys td {
+  border: 1px solid #ccc;
+  padding: 5px;
+  text-align: center;
+}
+
+.deploys td.success, .deploys td.passed {
+  background-color: #5cb85c;
+}
+
+.deploys td.started {
+  background-color: #f7ecb5;
+}
+
+.deploys td.failed {
+  background-color: #c9302c;
+}
+
+.row {
+
+}
+
+.row:after {
+  clear: both;
+}
+
+.col-md-6 {
+  position: relative;
+  float: left;
+  width: 50%;
+}
+
+@media (max-width: 900px) {
+  .col-md-6 {
+    width: 100%;
+  }
+}
+
+.progress-bar-wrapper {
+  border: 1px solid #ccc;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.progress-bar {
+  width: 0;
+  background-color: #27ae60;
+  padding: 5px;
+}
+
+.progress-bar.warn {
+  background-color: #f1c40f;
+}
+
+.progress-bar.danger {
+  background-color: #e74c3c;
+}

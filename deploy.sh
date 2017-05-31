@@ -11,3 +11,9 @@ composer update
 
 echo 'Dumping autoload...';
 composer dump-autoload
+
+echo 'Updating packages...';
+yarn
+
+echo 'Compiling files...';
+gulp build
