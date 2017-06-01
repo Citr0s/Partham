@@ -16,35 +16,42 @@
             <p>This is an awesome landing page!</p>
         </div>
         <div class="col-md-6">
-            <div class="progress-bar-wrapper">
-                <div class="progress-bar" style="width:0;"
-                     data-usage="0">0%
+            <div class="row">
+                <div class="col-md-8">
+                    <canvas id="myChart" width="400" height="100"></canvas>
                 </div>
-            </div>
-            <div class="progress-bar-wrapper">
-                <div class="progress-bar" style="width:0;"
-                     data-usage="0">0%
+                <div class="col-md-2">
+                    <div class="progress-bar-wrapper">
+                        <div class="progress-bar" style="height:0;"
+                             data-usage="0">
+                        </div>
+                    </div>
+                    <div class="progress-bar-wrapper">
+                        <div class="progress-bar" style="height:0;"
+                             data-usage="0">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <table class="deploys">
+            <thead>
+            <tr>
+                <th>App</th>
+                <th>Last Build Duration (seconds)</th>
+                <th>Last Build Status</th>
+                <th>Last Deploy Duration (seconds)</th>
+                <th>Last Deploy Status</th>
+                <th>Finished</th>
+            </tr>
+            </thead>
+            <tbody class="deploys-body">
+
+            </tbody>
+        </table>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+        <script src="../../dist/js/app.js"></script>
     </div>
-
-    <table class="deploys">
-        <thead>
-        <tr>
-            <th>App</th>
-            <th>Last Build Duration (seconds)</th>
-            <th>Last Build Status</th>
-            <th>Last Deploy Duration (seconds)</th>
-            <th>Last Deploy Status</th>
-            <th>Finished</th>
-        </tr>
-        </thead>
-        <tbody class="deploys-body">
-
-        </tbody>
-    </table>
-    <script src="../../dist/js/app.js"></script>
-</div>
 </body>
 </html>

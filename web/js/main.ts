@@ -3,6 +3,46 @@
 let usages = document.getElementsByClassName('progress-bar');
 let deploys = document.getElementsByClassName('deploys-body')[0];
 
+let chartData = {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [
+            {
+                label: 'CPU Usage',
+                data: [],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            },
+            {
+                label: 'Memory Usage',
+                data: [],
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1
+            }
+        ]
+    },
+    options: {
+        legend: {
+            display: false
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    max: 100,
+                    maxTicksLimit: 5
+                }
+            }]
+        }
+    }
+};
+
+let ctx = document.getElementById("myChart").getContext('2d');
+let myChart = new Chart(ctx, chartData);
+
 let deployService = new DeployService();
 
 checkUsage();
@@ -25,13 +65,22 @@ function checkDeploys() {
 function displayUsage(data) {
     let parsedData = JSON.parse(data);
 
+    if (chartData.data.labels.length > 10) {
+        chartData.data.labels.shift();
+        chartData.data.datasets[0].data.shift();
+        chartData.data.datasets[1].data.shift();
+    }
+
+    chartData.data.labels.push(toShortDate(new Date()));
+    chartData.data.datasets[0].data.push(parsedData.cpu);
+    chartData.data.datasets[1].data.push(parsedData.memory);
+    myChart.update();
+
     usages[0].setAttribute('data-usage', parsedData.cpu);
-    usages[0].setAttribute('style', 'width:' + parsedData.cpu + '%');
-    usages[0].innerHTML = parsedData.cpu + '%';
+    usages[0].setAttribute('style', 'height:' + parsedData.cpu + '%');
 
     usages[1].setAttribute('data-usage', parsedData.memory);
-    usages[1].setAttribute('style', 'width:' + parsedData.memory + '%');
-    usages[1].innerHTML = parsedData.memory + '%';
+    usages[1].setAttribute('style', 'height:' + parsedData.memory + '%');
 
     for (let i = 0; i < usages.length; i++) {
         if (parseFloat(usages[i].getAttribute('data-usage')) > 90)
@@ -61,4 +110,12 @@ function displayDeploys(data) {
     }
 
     deploys.innerHTML = htmlString;
+}
+
+function toShortDate(date) {
+    let hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+    let minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+    let seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+
+    return hours + ':' + minutes + ':' + seconds;
 }
