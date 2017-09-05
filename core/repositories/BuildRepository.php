@@ -1,9 +1,9 @@
 <?php namespace Partham\core\repositories;
 
-use Partham\core\mappers\DeployMapper;
+use Partham\core\mappers\BuildMapper;
 use Partham\core\services\DatabaseService;
 
-class DeployRepository
+class BuildRepository
 {
     private $database;
 
@@ -16,10 +16,10 @@ class DeployRepository
     {
         $response = [];
 
-        $data = $this->database->getAll('deploys');
+        $data = $this->database->getAll('builds');
 
         while ($record = mysqli_fetch_array($data)) {
-            $response[] = DeployMapper::map($record);
+            $response[] = BuildMapper::map($record);
         }
 
         return $response;

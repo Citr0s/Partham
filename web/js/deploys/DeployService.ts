@@ -14,4 +14,8 @@ class DeployService {
     getDeploys(callback: any) {
         return this._deployRepository.getDeploys(callback);
     }
+
+    getBuilds(callback: any) {
+        return this._deployRepository.getBuilds(callback);
+    }
 }

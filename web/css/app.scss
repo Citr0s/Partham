@@ -1,4 +1,15 @@
+@import "common";
 @import "grid";
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+$primary-color: #CFFCFE;
+$secondary-color: #191F26;
+
+body {
+  background-color: $secondary-color;
+  color: $primary-color;
+  font-family: 'Lato', sans-serif;
+}
 
 .deploys {
   width: 100%;
@@ -46,5 +57,19 @@
 
   &.danger {
     background-color: #e74c3c;
+  }
+}
+
+.process-box {
+  display: none;
+  border: 1px solid darken($primary-color, 70%);
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  padding: 15px;
+  background-color: $secondary-color;
+  border-radius: 5px;
+
+  p {
   }
 }

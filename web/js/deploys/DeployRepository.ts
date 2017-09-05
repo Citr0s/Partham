@@ -18,4 +18,10 @@ class DeployRepository {
             callback(data);
         });
     }
+
+    getBuilds(callback: any) {
+        return this._http.get('api/builds', (data) => {
+            callback(data);
+        });
+    }
 }

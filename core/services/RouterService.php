@@ -28,7 +28,7 @@ class RouterService
             unset($request[0]);
 
             $deployer = new DeployService();
-            $deployer->handleCommit($request, file_get_contents('php://input'));
+            $deployer->handleCommit(file_get_contents('php://input'));
             return;
         }
 
@@ -39,6 +39,12 @@ class RouterService
             if ($request[0] === 'deploys') {
                 $controller = new DashboardController();
                 $controller->deploys();
+                return;
+            }
+
+            if ($request[0] === 'builds') {
+                $controller = new DashboardController();
+                $controller->builds();
                 return;
             }
 

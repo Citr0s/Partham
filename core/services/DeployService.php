@@ -7,6 +7,8 @@ use Partham\core\repositories\DeployRepository;
 class DeployService
 {
     private $allowedApps = ['chat', 'ci', 'game'];
+    private $database;
+    private $repository;
 
     function __construct()
     {
@@ -32,7 +34,7 @@ class DeployService
             $message = 'build failed';
 
         $this->database->update('builds', ['reference' => $decodedRequest['commit']], ['end_time' => date("Y-m-d H:i:s")]);
-        
+
         $this->database->insert('deploys', ['log', 'request', 'status', 'startTime', 'identifier', 'app'], [$message, $request, 'started', date("Y-m-d H:i:s"), $identifier, $appName]);
 
         if ($buildFailed)
@@ -59,7 +61,7 @@ class DeployService
         return $response;
     }
 
-    public function handleCommit($url, $payload)
+    public function handleCommit($payload)
     {
         $payload = json_decode($payload, true);
         $reference = $payload['head_commit']['id'];

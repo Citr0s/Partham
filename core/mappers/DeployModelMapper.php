@@ -7,7 +7,7 @@ use Partham\core\types\DeployModel;
 class DeployModelMapper
 {
 
-    public static function map(Deploy $deploy)
+    public static function  map(Deploy $deploy)
     {
         $deployModel = new DeployModel();
         $deployModel->appName = $deploy->app;
