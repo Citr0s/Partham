@@ -61,6 +61,7 @@ class DeployService
     {
         $payload = json_decode($payload, true);
         $reference = $payload['head_commit']['id'];
+        
         $this->database->insert('builds', ['reference', 'app_id', 'start_time', 'user_id'], [$reference, 1, date("Y-m-d H:i:s"), 1]);
     }
 }
