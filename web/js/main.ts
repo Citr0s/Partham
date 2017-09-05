@@ -128,7 +128,7 @@ function displayBuilds(data) {
         return;
     }
 
-    document.querySelector('.process-box').removeAttribute('style');
+    document.querySelector('.process-box').setAttribute('style', 'display:block;');
 
     let secondsSinceStart = Math.floor((new Date().getTime()) / 1000 - parsedData[0].startTime);
     let minutesSinceStart = Math.floor(secondsSinceStart / 60);
