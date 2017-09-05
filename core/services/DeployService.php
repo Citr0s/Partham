@@ -32,6 +32,7 @@ class DeployService
             $message = 'build failed';
 
         $this->database->update('builds', ['reference' => $decodedRequest['commit']], ['end_time' => date("Y-m-d H:i:s")]);
+        
         $this->database->insert('deploys', ['log', 'request', 'status', 'startTime', 'identifier', 'app'], [$message, $request, 'started', date("Y-m-d H:i:s"), $identifier, $appName]);
 
         if ($buildFailed)
