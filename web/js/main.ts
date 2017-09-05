@@ -132,6 +132,7 @@ function displayBuilds(data) {
 
     let secondsSinceStart = Math.floor((new Date().getTime()) / 1000 - parsedData[0].startTime);
     let minutesSinceStart = Math.floor(secondsSinceStart / 60);
+
     secondsSinceStart -= minutesSinceStart * 60;
 
     document.querySelector('.process-box .app-name').innerHTML = parsedData[0].appName;
