@@ -24,6 +24,14 @@ class RouterService
             return;
         }
 
+        if ($request[0] === 'commit' && ($method === 'POST')) {
+            unset($request[0]);
+
+            $deployer = new DeployService();
+            $deployer->handleCommit($request, file_get_contents('php://input'));
+            return;
+        }
+
         if ($request[0] === 'api' && ($method === 'GET')) {
             unset($request[0]);
             $request = array_values($request);

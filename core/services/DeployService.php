@@ -56,4 +56,9 @@ class DeployService
 
         return $response;
     }
+
+    public function handleCommit($url, $payload)
+    {
+        $this->database->insert('deploys', ['log', 'request', 'status', 'startTime', 'identifier', 'app'], ["PAYLOAD: " . $payload, "URL: " . $url, 'started', date("Y-m-d H:i:s"), "", ""]);
+    }
 }
