@@ -60,7 +60,6 @@ class DeployService
     public function handleCommit($url, $payload)
     {
         $reference = $payload->head_commit->id;
-
         $this->database->insert('builds', ['reference', 'app_id', 'start_time', 'user_id'], [$reference . "URL: " . explode(", ", $url), 1, date("Y-m-d H:i:s"), 1]);
     }
 }
