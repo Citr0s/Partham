@@ -31,6 +31,7 @@ class DeployService
         $buildFailed = $decodedRequest['state'] !== 'passed';
 
         $this->database->insert('deploys', ['log'], [$decodedRequest]);
+        
 
         if ($buildFailed)
             $message = 'build failed';
