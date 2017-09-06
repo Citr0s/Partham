@@ -15,6 +15,7 @@ class DeployService
         $this->database = new DatabaseService();
         $this->repository = new DeployRepository($this->database);
     }
+    
 
     public function invoke($appName, $request)
     {
