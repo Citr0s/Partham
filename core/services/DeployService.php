@@ -30,13 +30,14 @@ class DeployService
         $decodedRequest = json_decode($request, true);
         $buildFailed = $decodedRequest['state'] !== 'passed';
 
-        $this->database->insert('deploys', ['log'], [$decodedRequest]);
-        
+        if ($decodedRequest['state'] === 'started')
+            $this->$this->handleBuildStart($decodedRequest);
+
+        if ($decodedRequest['state'] === 'passed')
+            $this->$this->handleBuildEnd($decodedRequest);
 
         if ($buildFailed)
             $message = 'build failed';
-
-        $this->database->update('builds', ['reference' => $decodedRequest['commit']], ['end_time' => date("Y-m-d H:i:s")]);
 
         $this->database->insert('deploys', ['log', 'request', 'status', 'startTime', 'identifier', 'app'], [$message, $request, 'started', date("Y-m-d H:i:s"), $identifier, $appName]);
 
@@ -69,7 +70,7 @@ class DeployService
         $payload = json_decode($payload, true);
         $reference = $payload['head_commit']['id'];
 
-        $this->database->insert('builds', ['reference', 'app_id', 'start_time', 'user_id'], [$reference, 1, date("Y-m-d H:i:s"), 1]);
+        $this->database->insert('builds', ['reference', 'app_id', 'user_id'], [$reference, 1, 1]);
     }
 
     public function handleBuildStart($payload)
