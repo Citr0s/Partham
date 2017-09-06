@@ -58,9 +58,8 @@ class DeployService
 
         $deploys = $this->repository->getAll();
 
-        foreach ($deploys as $deploy) {
+        foreach ($deploys as $deploy)
             $response[] = DeployModelMapper::map($deploy);
-        }
 
         return $response;
     }
