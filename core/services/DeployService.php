@@ -16,7 +16,6 @@ class DeployService
         $this->repository = new DeployRepository($this->database);
     }
 
-
     public function invoke($appName, $request)
     {
         if (!in_array($appName, $this->allowedApps))
