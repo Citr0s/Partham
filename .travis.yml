@@ -13,3 +13,6 @@ notifications:
   email: false
   webhooks:
     - https://ci.miloszdura.com/deploy/ci
+    on_start: always
+    on_success: always
+    on_failure: always
