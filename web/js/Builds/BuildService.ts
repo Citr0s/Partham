@@ -29,6 +29,7 @@ class BuildService {
         document.querySelector('.process-box').setAttribute('style', 'display:block;');
 
         if (!parsedData[0].startTime && !parsedData[0].endTime) {
+            document.querySelector('.process-box .build-time').innerHTML = '';
             document.querySelector('.process-box .message').innerHTML = `<span style="font-weight:bold;">${parsedData[0].appName}</span> is queued for build.`;
             return;
         }
