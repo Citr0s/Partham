@@ -21,20 +21,24 @@ class BuildService {
     displayBuilds(data) {
         let parsedData = JSON.parse(data);
 
-        if (parsedData[0].endTime) {
+        if (parsedData[0].startTime && parsedData[0].endTime) {
             document.querySelector('.process-box').setAttribute('style', 'display:none;');
             return;
         }
 
         document.querySelector('.process-box').setAttribute('style', 'display:block;');
 
+        if (!parsedData[0].startTime && !parsedData[0].endTime) {
+            document.querySelector('.process-box .message').innerHTML = `<span style="font-weight:bold;">${parsedData[0].appName}</span> is queued for build.`;
+            return;
+        }
+
         let secondsSinceStart = Math.floor((new Date().getTime()) / 1000 - parsedData[0].startTime);
         let minutesSinceStart = Math.floor(secondsSinceStart / 60);
 
         secondsSinceStart -= minutesSinceStart * 60;
 
-        document.querySelector('.process-box .app-name').innerHTML = parsedData[0].appName;
-        document.querySelector('.process-box .user-name').innerHTML = parsedData[0].userName;
+        document.querySelector('.process-box .message').innerHTML = `<span style="font-weight:bold;">${parsedData[0].userName}</span> is currently brewing <span style="font-weight:bold;">${parsedData[0].appName}</span>.`;
         document.querySelector('.process-box .build-time').innerHTML = `${minutesSinceStart}m ${secondsSinceStart}s`;
     }
 
