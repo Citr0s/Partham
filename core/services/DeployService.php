@@ -29,8 +29,6 @@ class DeployService
 
         $decodedRequest = json_decode($request, true);
 
-        $this->database->insert('builds', ['reference', 'app_id', 'user_id'], [$decodedRequest['state'] . ' - ' . $decodedRequest['state'] === 'started', 2, 2]);
-
         if ($decodedRequest['state'] === 'started')
             $this->handleBuildStart($decodedRequest);
 
@@ -77,13 +75,11 @@ class DeployService
 
     public function handleBuildStart($payload)
     {
-        $this->database->insert('builds', ['reference', 'app_id', 'user_id'], [$payload['commit'], 2, 2]);
         $this->database->update('builds', ['reference' => $payload['commit']], ['start_time' => date("Y-m-d H:i:s")]);
     }
 
     public function handleBuildEnd($payload)
     {
-        $this->database->insert('builds', ['reference', 'app_id', 'user_id'], [$payload['commit'], 3, 3]);
         $this->database->update('builds', ['reference' => $payload['commit']], ['end_time' => date("Y-m-d H:i:s")]);
     }
 }
