@@ -11,6 +11,15 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
+.header {
+  h1 {
+    margin: 1rem;
+  }
+  p {
+    margin: 1rem;
+  }
+}
+
 .deploys {
   width: 100%;
   border: 1px solid #999;
