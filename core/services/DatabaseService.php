@@ -52,8 +52,6 @@ class DatabaseService
 
         $updateString = implode(", ", $updateArray);
 
-        echo "UPDATE {$table} SET {$updateString} WHERE {$conditionsString}";
-
         return $this->connection->query("UPDATE {$table} SET {$updateString} WHERE {$conditionsString}");
     }
 }

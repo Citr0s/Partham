@@ -28,13 +28,14 @@ class DeployService
             $request = str_replace('payload=', '', urldecode($request));
 
         $decodedRequest = json_decode($request, true);
-        $buildFailed = $decodedRequest['state'] !== 'passed';
 
         if ($decodedRequest['state'] === 'started')
             $this->handleBuildStart($decodedRequest);
 
         if ($decodedRequest['state'] === 'passed')
             $this->handleBuildEnd($decodedRequest);
+
+        $buildFailed = $decodedRequest['state'] !== 'passed';
 
         if ($buildFailed)
             $message = 'build failed';
