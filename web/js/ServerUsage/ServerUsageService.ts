@@ -71,7 +71,7 @@ class ServerUsageService {
             this.chartData.data.datasets[1].data.shift();
         }
 
-        this.chartData.data.labels.push(toShortDate(new Date()));
+        this.chartData.data.labels.push(this.toShortDate(new Date()));
         this.chartData.data.datasets[0].data.push(parsedData.cpu);
         this.chartData.data.datasets[1].data.push(parsedData.memory);
         this.myChart.update();
@@ -92,6 +92,14 @@ class ServerUsageService {
                 this.usages[i].classList.remove('danger');
             }
         }
+    }
+
+    toShortDate(date) {
+        let hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+        let minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+        let seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+
+        return hours + ':' + minutes + ':' + seconds;
     }
 
     static invoke() {
