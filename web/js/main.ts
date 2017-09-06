@@ -136,6 +136,7 @@ function displayBuilds(data) {
     secondsSinceStart -= minutesSinceStart * 60;
 
     document.querySelector('.process-box .app-name').innerHTML = parsedData[0].appName;
+    document.querySelector('.process-box .user-name').innerHTML = parsedData[0].userName;
     document.querySelector('.process-box .build-time').innerHTML = `${minutesSinceStart}m ${secondsSinceStart}s`;
 }
 
