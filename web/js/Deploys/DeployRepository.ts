@@ -1,4 +1,4 @@
-/// <reference path="./../http/Http"/>
+/// <reference path="../Http/Http"/>
 
 class DeployRepository {
     private _http: Http;

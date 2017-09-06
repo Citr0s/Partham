@@ -1,11 +1,9 @@
-///<reference path="../deploys/DeployService.ts"/>
+///<reference path="../Deploys/DeployService.ts"/>
 
 class BuildService {
-    private deploys: Element;
     private deployService: DeployService;
 
     constructor() {
-        this.deploys = document.getElementsByClassName('deploys-body')[0];
         this.deployService = new DeployService();
 
         this.checkBuilds();
