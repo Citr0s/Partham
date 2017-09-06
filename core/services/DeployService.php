@@ -31,10 +31,10 @@ class DeployService
         $buildFailed = $decodedRequest['state'] !== 'passed';
 
         if ($decodedRequest['state'] === 'started')
-            $this->$this->handleBuildStart($decodedRequest);
+            $this->handleBuildStart($decodedRequest);
 
         if ($decodedRequest['state'] === 'passed')
-            $this->$this->handleBuildEnd($decodedRequest);
+            $this->handleBuildEnd($decodedRequest);
 
         if ($buildFailed)
             $message = 'build failed';
