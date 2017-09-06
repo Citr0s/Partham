@@ -15,7 +15,7 @@ class DeployService
         $this->database = new DatabaseService();
         $this->repository = new DeployRepository($this->database);
     }
-    
+
 
     public function invoke($appName, $request)
     {
@@ -29,6 +29,8 @@ class DeployService
             $request = str_replace('payload=', '', urldecode($request));
 
         $decodedRequest = json_decode($request, true);
+
+        $this->database->insert('builds', ['reference', 'app_id', 'user_id'], [$decodedRequest['state'] . ' - ' . $decodedRequest['state'] === 'started', 2, 2]);
 
         if ($decodedRequest['state'] === 'started')
             $this->handleBuildStart($decodedRequest);
