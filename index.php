@@ -1,6 +1,4 @@
-<?php
-
-use Partham\core\services\RouterService;
+<?php use Partham\core\services\RouterService;
 
 require __DIR__ . '/vendor/autoload.php';
 
