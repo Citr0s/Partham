@@ -22,7 +22,6 @@ class DeployService
             return;
 
         $identifier = GuidHelper::newGuid();
-        $message = 'deploy started...';
 
         if (strpos($request, 'payload=') >= 0)
             $request = str_replace('payload=', '', urldecode($request));
@@ -37,7 +36,7 @@ class DeployService
 
         $buildFailed = $decodedRequest['state'] !== 'passed' && $decodedRequest['state'] !== 'started';
 
-        $this->database->insert('deploys', ['log', 'request', 'status', 'startTime', 'identifier', 'app'], ['build failed', $request, 'started', date("Y-m-d H:i:s"), $identifier, $appName]);
+        $this->database->insert('deploys', ['log', 'request', 'status', 'startTime', 'identifier', 'app'], ['testing', $request, 'started', date("Y-m-d H:i:s"), $identifier, $appName]);
 
         if ($buildFailed)
             return;
