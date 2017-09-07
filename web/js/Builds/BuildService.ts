@@ -22,6 +22,7 @@ class BuildService {
         let parsedData = JSON.parse(data);
 
         if (parsedData[0].state === 'passed') {
+            document.querySelector('.process-box').setAttribute('style', 'border: 1px solid #2ecc71;');
             document.querySelector('.process-box').setAttribute('style', 'display:none;');
             return;
         }
@@ -31,6 +32,7 @@ class BuildService {
             return;
         }
 
+        document.querySelector('.process-box').setAttribute('style', 'border: 1px solid #026266;');
         document.querySelector('.process-box').setAttribute('style', 'display:block;');
 
         if (parsedData[0].state === 'started') {
