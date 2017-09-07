@@ -23,6 +23,7 @@ class BuildModelMapper
         $buildModel->userName = $this->userRepository->getById($record->user);
         $buildModel->startTime = strtotime($record->startTime);
         $buildModel->endTime = strtotime($record->endTime);
+        $buildModel->state = $record->state;
 
         return $buildModel;
     }

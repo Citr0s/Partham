@@ -75,11 +75,11 @@ class DeployService
 
     public function handleBuildStart($payload)
     {
-        $this->database->update('builds', ['reference' => $payload['commit']], ['start_time' => date("Y-m-d H:i:s")]);
+        $this->database->update('builds', ['reference' => $payload['commit']], ['start_time' => date("Y-m-d H:i:s"), 'state' => $payload['state']]);
     }
 
     public function handleBuildEnd($payload)
     {
-        $this->database->update('builds', ['reference' => $payload['commit']], ['end_time' => date("Y-m-d H:i:s")]);
+        $this->database->update('builds', ['reference' => $payload['commit']], ['end_time' => date("Y-m-d H:i:s"), 'state' => $payload['state']]);
     }
 }

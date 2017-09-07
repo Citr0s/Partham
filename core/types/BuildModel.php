@@ -7,4 +7,5 @@ class BuildModel
     public $startTime;
     public $endTime;
     public $userName;
+    public $state;
 }

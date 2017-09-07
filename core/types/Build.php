@@ -7,4 +7,5 @@ class Build
     public $endTime;
     public $startTime;
     public $reference;
+    public $state;
 }
