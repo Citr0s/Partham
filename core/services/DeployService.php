@@ -28,13 +28,15 @@ class DeployService
 
         $decodedRequest = json_decode($request, true);
 
-        if ($decodedRequest['state'] === 'started')
+        if ($decodedRequest['state'] === 'started') {
             $this->handleBuildStart($decodedRequest);
+            return;
+        }
 
         if ($decodedRequest['state'] === 'passed')
             $this->handleBuildEnd($decodedRequest);
 
-        $buildFailed = $decodedRequest['state'] !== 'passed' && $decodedRequest['state'] !== 'started';
+        $buildFailed = $decodedRequest['state'] !== 'passed';
 
         $this->database->insert('deploys', ['log', 'request', 'status', 'startTime', 'identifier', 'app'], ['testing', $request, 'started', date("Y-m-d H:i:s"), $identifier, $appName]);
 
