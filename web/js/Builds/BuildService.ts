@@ -35,7 +35,7 @@ class BuildService {
         document.querySelector('.process-box').setAttribute('style', 'border: 1px solid #026266;');
         document.querySelector('.process-box').setAttribute('style', 'display:block;');
 
-        if (parsedData[0].state === 'started') {
+        if (parsedData[0].state === null || parsedData[0].state === 'started') {
             document.querySelector('.process-box .build-time').setAttribute('style', 'display:none;');
             document.querySelector('.process-box .message').innerHTML = `<span style="font-weight:bold;">${parsedData[0].appName}</span> is queued for build.`;
             return;
