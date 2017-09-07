@@ -35,12 +35,9 @@ class DeployService
         if ($decodedRequest['state'] === 'passed')
             $this->handleBuildEnd($decodedRequest);
 
-        $buildFailed = $decodedRequest['state'] !== 'passed' || $decodedRequest['state'] !== 'started';
+        $buildFailed = $decodedRequest['state'] !== 'passed' && $decodedRequest['state'] !== 'started';
 
-        if ($buildFailed)
-            $message = 'build failed';
-
-        $this->database->insert('deploys', ['log', 'request', 'status', 'startTime', 'identifier', 'app'], [$message, $request, 'started', date("Y-m-d H:i:s"), $identifier, $appName]);
+        $this->database->insert('deploys', ['log', 'request', 'status', 'startTime', 'identifier', 'app'], ['build failed', $request, 'started', date("Y-m-d H:i:s"), $identifier, $appName]);
 
         if ($buildFailed)
             return;
