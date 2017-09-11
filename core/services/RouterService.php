@@ -19,16 +19,16 @@ class RouterService
             unset($request[0]);
             $request = array_values($request);
 
-            $deployer = new DeployService();
-            $deployer->invoke($request[0], file_get_contents('php://input'));
+            $logger = new DeployService();
+            $logger->invoke($request[0], file_get_contents('php://input'));
             return;
         }
 
         if ($request[0] === 'commit' && ($method === 'POST')) {
             unset($request[0]);
 
-            $deployer = new DeployService();
-            $deployer->handleCommit(file_get_contents('php://input'));
+            $logger = new DeployService();
+            $logger->handleCommit(file_get_contents('php://input'));
             return;
         }
 
@@ -51,6 +51,20 @@ class RouterService
             if ($request[0] === 'usage') {
                 $controller = new DashboardController();
                 $controller->server();
+                return;
+            }
+        }
+
+        if ($request[0] === 'api' && ($method === 'POST')) {
+            unset($request[0]);
+            $request = array_values($request);
+
+            if ($request[0] === 'log') {
+                unset($request[0]);
+                $request = array_values($request);
+
+                $logger = new LogService();
+                $logger->invoke($request[0], file_get_contents('php://input'));
                 return;
             }
         }
