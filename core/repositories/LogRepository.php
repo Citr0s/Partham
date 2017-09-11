@@ -25,9 +25,11 @@ class LogRepository implements ILogRepository
         return $response;
     }
 
-    public function save($severity, $logDetails)
+    public function save($severity, $logDetails): bool
     {
         $logDetails = json_decode($logDetails);
         $this->database->insert('logs', ['app', 'severity', 'message', 'exception', 'logged_at'], [$logDetails->app, $severity, $logDetails->message, $logDetails->exception, date("Y-m-d H:i:s")]);
+
+        return true;
     }
 }
