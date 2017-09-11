@@ -3,7 +3,7 @@
 use Partham\core\interfaces\IDatabaseService;
 use Partham\core\repositories\LogRepository;
 
-class DatabaseServiceStub implements IDatabaseService
+class DatabaseServiceStubForLogsRepository implements IDatabaseService
 {
     public function getAll($table, $reverse = false, $limit = 1000)
     {
@@ -40,7 +40,7 @@ class WhenTheLogsCouldBeRetrievedTest extends PHPUnit\Framework\TestCase
 
     public function setUp()
     {
-        $subject = new LogRepository(new DatabaseServiceStub());
+        $subject = new LogRepository(new DatabaseServiceStubForLogsRepository());
         $this->result = $subject->getAll();
     }
 
