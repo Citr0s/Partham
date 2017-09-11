@@ -6,4 +6,9 @@ class WebController extends BaseController
     {
         self::view('index');
     }
+
+    public static function logs()
+    {
+        self::view('logs');
+    }
 }

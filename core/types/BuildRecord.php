@@ -1,6 +1,6 @@
 <?php namespace Partham\core\types;
 
-class Build
+class BuildRecord
 {
     public $user;
     public $app;

@@ -15,6 +15,11 @@ class RouterService
             return;
         }
 
+        if ($request[0] === 'logs' && ($method === 'GET')) {
+            WebController::logs();
+            return;
+        }
+
         if ($request[0] === 'deploy' && ($method === 'POST')) {
             unset($request[0]);
             $request = array_values($request);
@@ -51,6 +56,12 @@ class RouterService
             if ($request[0] === 'usage') {
                 $controller = new DashboardController();
                 $controller->server();
+                return;
+            }
+
+            if ($request[0] === 'logs') {
+                $controller = new DashboardController();
+                $controller->logs();
                 return;
             }
         }

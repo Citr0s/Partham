@@ -1,12 +1,12 @@
 <?php namespace Partham\core\mappers;
 
-use Partham\core\types\Build;
+use Partham\core\types\BuildRecord;
 
 class BuildMapper
 {
     public static function map($record)
     {
-        $build = new Build();
+        $build = new BuildRecord();
         $build->reference = $record['reference'];
         $build->startTime = $record['start_time'];
         $build->endTime = $record['end_time'];
