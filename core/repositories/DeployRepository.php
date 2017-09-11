@@ -16,11 +16,10 @@ class DeployRepository
     {
         $response = [];
 
-        $data = $this->database->getAll('deploys');
+        $records = $this->database->getAll('deploys');
 
-        while ($record = mysqli_fetch_array($data)) {
+        foreach ($records as $record)
             $response[] = DeployMapper::map($record);
-        }
 
         return $response;
     }

@@ -1,26 +1,25 @@
 <?php namespace Partham\core\repositories;
 
+use Partham\core\interfaces\IDatabaseService;
 use Partham\core\mappers\LogMapper;
-use Partham\core\services\DatabaseService;
 
 class LogRepository
 {
     private $database;
 
-    function __construct(DatabaseService $database)
+    function __construct(IDatabaseService $database)
     {
         $this->database = $database;
     }
 
-    public function getAll()
+    public function getAll(): array
     {
         $response = [];
 
-        $data = $this->database->getAll('logs');
+        $records = $this->database->getAll('logs');
 
-        while ($record = mysqli_fetch_array($data)) {
+        foreach ($records as $record)
             $response[] = LogMapper::map($record);
-        }
 
         return $response;
     }

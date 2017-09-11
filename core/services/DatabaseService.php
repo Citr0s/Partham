@@ -1,8 +1,10 @@
 <?php namespace Partham\core\services;
 
+use Partham\core\interfaces\IDatabaseService;
+
 require __DIR__ . '/../../credentials.php';
 
-class DatabaseService
+class DatabaseService implements IDatabaseService
 {
     public $connection;
 
@@ -18,7 +20,14 @@ class DatabaseService
         if ($reverse)
             $orderBy = 'ORDER BY id ASC';
 
-        return $this->connection->query("SELECT * FROM {$table} {$orderBy} LIMIT {$limit}");
+        $results = $this->connection->query("SELECT * FROM {$table} {$orderBy} LIMIT {$limit}");
+
+        $response = [];
+
+        while ($record = mysqli_fetch_assoc($results))
+            $response[] = $record;
+
+        return $response;
     }
 
     public function get($columns, $table, $conditions, $limit = 1)

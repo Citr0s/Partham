@@ -16,11 +16,10 @@ class BuildRepository
     {
         $response = [];
 
-        $data = $this->database->getAll('builds');
+        $records = $this->database->getAll('builds');
 
-        while ($record = mysqli_fetch_array($data)) {
+        foreach ($records as $record)
             $response[] = BuildMapper::map($record);
-        }
 
         return $response;
     }
