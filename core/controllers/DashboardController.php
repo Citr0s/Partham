@@ -1,5 +1,7 @@
 <?php namespace Partham\core\controllers;
 
+use Partham\core\repositories\LogRepository;
+use Partham\core\services\DatabaseService;
 use Partham\core\services\DeployService;
 use Partham\core\services\BuildService;
 use Partham\core\services\LogService;
@@ -17,7 +19,7 @@ class DashboardController
         $this->deployService = new DeployService();
         $this->buildService = new BuildService();
         $this->serverService = new ServerService();
-        $this->logService = new LogService();
+        $this->logService = new LogService(new LogRepository(new DatabaseService()));
     }
 
     public function deploys()

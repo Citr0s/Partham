@@ -2,15 +2,13 @@
 
 use Partham\core\controllers\DashboardController;
 use Partham\core\controllers\WebController;
+use Partham\core\repositories\LogRepository;
 
 class RouterService
 {
     public static function start($request, $method)
     {
         if (!array_key_exists(0, $request) || ($request[0] === 'web' && ($method === 'GET'))) {
-            unset($request[0]);
-            $request = array_values($request);
-
             WebController::index();
             return;
         }
@@ -74,7 +72,7 @@ class RouterService
                 unset($request[0]);
                 $request = array_values($request);
 
-                $logger = new LogService();
+                $logger = new LogService(new LogRepository(new DatabaseService()));
                 $logger->invoke($request[0], file_get_contents('php://input'));
                 return;
             }
