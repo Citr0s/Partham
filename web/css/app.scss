@@ -36,12 +36,12 @@ body {
   .state-box {
     padding: 5px;
     border-radius: 5px;
+    text-transform: uppercase;
   }
 
   .state-box.passed {
     border: 1px solid #5cb85c;
     color: #5cb85c;
-    text-transform: uppercase;
   }
 
   .state-box.started, .state-box.deploying {
