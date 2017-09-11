@@ -1,9 +1,9 @@
 <?php
 
 use Partham\core\interfaces\IDatabaseService;
-use Partham\core\repositories\BuildRepository;
+use Partham\core\repositories\DeployRepository;
 
-class DatabaseServiceStubForBuildsRepository implements IDatabaseService
+class DatabaseServiceStubForDeploysRepository implements IDatabaseService
 {
     public function getAll($table, $reverse = false, $limit = 1000)
     {
@@ -35,13 +35,13 @@ class DatabaseServiceStubForBuildsRepository implements IDatabaseService
     }
 }
 
-class WhenTheBuildsCouldBeRetrievedTest extends PHPUnit\Framework\TestCase
+class WhenTheDeploysCouldBeRetrievedTest extends PHPUnit\Framework\TestCase
 {
     private $result;
 
     public function setUp()
     {
-        $subject = new BuildRepository(new DatabaseServiceStubForDeploysRepository());
+        $subject = new DeployRepository(new DatabaseServiceStubForDeploysRepository());
         $this->result = $subject->getAll();
     }
 

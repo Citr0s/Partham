@@ -1,13 +1,13 @@
 <?php namespace Partham\core\repositories;
 
+use Partham\core\interfaces\IDatabaseService;
 use Partham\core\mappers\DeployMapper;
-use Partham\core\services\DatabaseService;
 
 class DeployRepository
 {
     private $database;
 
-    function __construct(DatabaseService $database)
+    function __construct(IDatabaseService $database)
     {
         $this->database = $database;
     }
