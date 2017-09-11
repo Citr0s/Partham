@@ -27,7 +27,7 @@ class DeployFactory {
         for (let i = 0; i < parsedData.length; i++) {
             htmlString += '<tr>';
             htmlString += '<td>' + parsedData[i].appName + '</td>';
-            htmlString += '<td class="' + parsedData[i].state + '">' + parsedData[i].state + '</td>';
+            htmlString += '<td><div class="state-box ' + parsedData[i].state + '">' + parsedData[i].state + '</div></td>';
             htmlString += '<td>' + parsedData[i].startTime + '</td>';
             htmlString += '<td>' + parsedData[i].endTime + '</td>';
             htmlString += '</tr>';

@@ -22,24 +22,36 @@ body {
 
 .deploys {
   width: 100%;
-  border: 1px solid #999;
+  padding: 15px;
+
+  th {
+    border-bottom: 1px solid #666;
+  }
 
   th, td {
-    border: 1px solid #ccc;
     padding: 5px;
     text-align: center;
   }
 
-  td.success, td.passed {
-    background-color: #5cb85c;
+  .state-box {
+    padding: 5px;
+    border-radius: 5px;
   }
 
-  td.started {
+  .state-box.passed {
+    border: 1px solid #5cb85c;
+    color: #5cb85c;
+    text-transform: uppercase;
+  }
+
+  .state-box.started, .state-box.deploying {
     background-color: #f7ecb5;
+    color: #f7ecb5;
   }
 
-  td.failed {
+  .state-box.failed {
     background-color: #c9302c;
+    color: #c9302c;
   }
 }
 
