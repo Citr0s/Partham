@@ -44,7 +44,7 @@ class DeployService
             return;
         }
 
-        $this->handleDeployEnd($identifier, 'success');
+        $this->handleDeployEnd($identifier, 'passed');
     }
 
     public function getAll()
