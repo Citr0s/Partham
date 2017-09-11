@@ -1,12 +1,12 @@
 <?php namespace Partham\core\mappers;
 
-use Partham\core\types\Deploy;
+use Partham\core\types\DeployRecord;
 
 class DeployMapper
 {
     public static function map($record)
     {
-        $deploy = new Deploy();
+        $deploy = new DeployRecord();
         $deploy->app = $record['app_id'];
         $deploy->user = $record['user_id'];
         $deploy->state = $record['state'];

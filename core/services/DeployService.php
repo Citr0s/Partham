@@ -2,18 +2,21 @@
 
 use Partham\core\helpers\GuidHelper;
 use Partham\core\mappers\DeployModelMapper;
+use Partham\core\repositories\AppRepository;
 use Partham\core\repositories\DeployRepository;
 
 class DeployService
 {
     private $allowedApps = ['chat', 'ci', 'game'];
     private $database;
-    private $repository;
+    private $deployRepository;
+    private $appRepository;
 
     function __construct()
     {
         $this->database = new DatabaseService();
-        $this->repository = new DeployRepository($this->database);
+        $this->deployRepository = new DeployRepository($this->database);
+        $this->appRepository = new AppRepository($this->database);
     }
 
     public function invoke($appName, $request)
@@ -51,10 +54,11 @@ class DeployService
     {
         $response = [];
 
-        $deploys = $this->repository->getAll();
+        $deploys = $this->deployRepository->getAll();
+        $mapper = new DeployModelMapper($this->appRepository);
 
         foreach ($deploys as $deploy)
-            $response[] = DeployModelMapper::map($deploy);
+            $response[] = $mapper->map($deploy);
 
         return $response;
     }

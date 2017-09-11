@@ -1,6 +1,6 @@
 <?php namespace Partham\core\types;
 
-class Deploy
+class DeployRecord
 {
     public $state;
     public $app;
