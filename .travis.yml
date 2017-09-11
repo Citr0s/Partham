@@ -14,7 +14,7 @@ before_script:
   - mkdir -p build/logs
   - ls -al
 
-script: phpunit --bootstrap vendor/autoload.php --colors=always --coverage-clover build/logs/clover.xml tests/
+script: phpunit --bootstrap vendor/autoload.php --colors=always --whitelist=cover/ --coverage-clover build/logs/clover.xml tests/
 
 after_success:
  - travis_retry php coveralls.phar -v
