@@ -45,12 +45,12 @@ body {
   }
 
   .state-box.started, .state-box.deploying {
-    background-color: #f7ecb5;
+    border: 1px solid #f7ecb5;
     color: #f7ecb5;
   }
 
   .state-box.failed {
-    background-color: #c9302c;
+    border: 1px solid #c9302c;
     color: #c9302c;
   }
 }
