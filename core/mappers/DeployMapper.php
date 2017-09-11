@@ -7,12 +7,10 @@ class DeployMapper
     public static function map($record)
     {
         $deploy = new Deploy();
-        $deploy->log = $record['log'];
-        $deploy->request = $record['request'];
-        $deploy->status = $record['status'];
-        $deploy->startTime = $record['startTime'];
-        $deploy->endTime = $record['endTime'];
         $deploy->app = $record['app'];
+        $deploy->state = $record['state'];
+        $deploy->startTime = $record['start_time'];
+        $deploy->endTime = $record['end_time'];
 
         return $deploy;
     }
