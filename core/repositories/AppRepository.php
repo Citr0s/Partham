@@ -1,12 +1,12 @@
 <?php namespace Partham\core\repositories;
 
-use Partham\core\services\DatabaseService;
+use Partham\core\interfaces\IDatabaseService;
 
 class AppRepository
 {
     private $database;
 
-    public function __construct(DatabaseService $database)
+    public function __construct(IDatabaseService $database)
     {
         $this->database = $database;
     }
@@ -14,6 +14,6 @@ class AppRepository
     public function getById($appId)
     {
         $record = $this->database->get(['name'], 'apps', ['id', $appId]);
-        return mysqli_fetch_assoc($record)['name'];
+        return $record['name'];
     }
 }

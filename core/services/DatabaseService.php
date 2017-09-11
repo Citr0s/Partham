@@ -35,7 +35,9 @@ class DatabaseService implements IDatabaseService
         $columns = implode(', ', $columns);
         $conditions = implode(' = ', $conditions);
 
-        return $this->connection->query("SELECT {$columns} FROM {$table} WHERE {$conditions} LIMIT {$limit}");
+        $records = $this->connection->query("SELECT {$columns} FROM {$table} WHERE {$conditions} LIMIT {$limit}");
+
+        return mysqli_fetch_assoc($records);
     }
 
     public function insert($table, $columns, $values)

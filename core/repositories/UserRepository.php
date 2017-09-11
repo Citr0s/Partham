@@ -14,6 +14,6 @@ class UserRepository
     public function getById($appId)
     {
         $record = $this->database->get(['name'], 'users', ['id', $appId]);
-        return mysqli_fetch_assoc($record)['name'];
+        return $record['name'];
     }
 }
