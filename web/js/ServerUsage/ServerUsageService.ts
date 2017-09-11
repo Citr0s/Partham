@@ -76,6 +76,9 @@ class ServerUsageService {
         this.chartData.data.datasets[1].data.push(parsedData.memory);
         this.myChart.update();
 
+        document.getElementsByClassName('cpu-usage')[0].innerHTML = parsedData.cpu;
+        document.getElementsByClassName('memory-usage')[0].innerHTML = parsedData.memory;
+
         this.usages[0].setAttribute('data-usage', parsedData.cpu);
         this.usages[0].setAttribute('style', 'height:' + parsedData.cpu + '%');
 
