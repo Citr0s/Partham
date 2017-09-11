@@ -1,7 +1,7 @@
 <?php
 
 use Partham\core\interfaces\IDatabaseService;
-use Partham\core\repositories\AppRepository;
+use Partham\core\repositories\UserRepository;
 
 class DatabaseServiceStubForUserRepository implements IDatabaseService
 {
@@ -35,7 +35,7 @@ class WhenTheUserCouldBeRetrievedTest extends PHPUnit\Framework\TestCase
 
     public function setUp()
     {
-        $subject = new AppRepository(new DatabaseServiceStubForUserRepository());
+        $subject = new UserRepository(new DatabaseServiceStubForUserRepository());
         $this->result = $subject->getById(1);
     }
 
