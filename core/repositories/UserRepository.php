@@ -1,12 +1,12 @@
 <?php namespace Partham\core\repositories;
 
-use Partham\core\services\DatabaseService;
+use Partham\core\interfaces\IDatabaseService;
 
 class UserRepository
 {
     private $database;
 
-    public function __construct(DatabaseService $database)
+    public function __construct(IDatabaseService $database)
     {
         $this->database = $database;
     }
