@@ -21,8 +21,6 @@ class DeployService
         if (!in_array($appName, $this->allowedApps))
             return;
 
-        $identifier = GuidHelper::newGuid();
-
         if (strpos($request, 'payload=') >= 0)
             $request = str_replace('payload=', '', urldecode($request));
 
@@ -33,22 +31,20 @@ class DeployService
             return;
         }
 
-        if ($decodedRequest['state'] === 'passed')
-            $this->handleBuildEnd($decodedRequest);
+        $this->handleBuildEnd($decodedRequest);
 
-        $buildFailed = $decodedRequest['state'] !== 'passed';
+        $identifier = GuidHelper::newGuid();
 
-        $this->database->insert('deploys', ['log', 'request', 'status', 'startTime', 'identifier', 'app'], ['testing', $request, 'started', date("Y-m-d H:i:s"), $identifier, $appName]);
-
-        if ($buildFailed)
-            return;
+        $this->handleDeployStart($identifier);
 
         $output = shell_exec("cd /var/www/{$appName} && sudo bash deploy.sh 2>&1");
 
-        if (is_null($output))
+        if (is_null($output)) {
+            $this->handleDeployEnd($identifier, 'failed');
             return;
+        }
 
-        $this->database->update('deploys', ['identifier' => $identifier], ['log' => $output, 'request' => $request, 'status' => 'success', 'endTime' => date("Y-m-d H:i:s")]);
+        $this->handleDeployEnd($identifier, 'success');
     }
 
     public function getAll()
@@ -79,5 +75,15 @@ class DeployService
     public function handleBuildEnd($payload)
     {
         $this->database->update('builds', ['reference' => $payload['commit']], ['end_time' => date("Y-m-d H:i:s"), 'state' => $payload['state']]);
+    }
+
+    public function handleDeployStart($identifier)
+    {
+        $this->database->insert('deploys', ['reference', 'app_id', 'user_id', 'start_time', 'state'], [$identifier, 1, 1, date("Y-m-d H:i:s"), 'deploying']);
+    }
+
+    public function handleDeployEnd($identifier, $state)
+    {
+        $this->database->update('deploys', ['reference' => $identifier], ['end_time' => date("Y-m-d H:i:s"), 'state' => $state]);
     }
 }

@@ -2,10 +2,8 @@
 
 class Deploy
 {
-    public $log;
-    public $request;
-    public $status;
+    public $state;
+    public $app;
     public $startTime;
     public $endTime;
-    public $app;
 }

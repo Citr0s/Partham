@@ -26,12 +26,10 @@ class DeployFactory {
 
         for (let i = 0; i < parsedData.length; i++) {
             htmlString += '<tr>';
+            htmlString += '<td class="' + parsedData[i].state + '">' + parsedData[i].state + '</td>';
             htmlString += '<td>' + parsedData[i].appName + '</td>';
-            htmlString += '<td>' + parsedData[i].lastBuildDuration + '</td>';
-            htmlString += '<td class="' + parsedData[i].lastBuildStatusClass + '" >' + parsedData[i].lastBuildStatus + '</td>';
-            htmlString += '<td>' + parsedData[i].lastDeployDuration + '</td>';
-            htmlString += '<td class="' + parsedData[i].lastDeployStatusClass + '">' + parsedData[i].lastDeployStatus + '</td>';
-            htmlString += '<td>' + parsedData[i].deployFinishTime + '</td>';
+            htmlString += '<td>' + parsedData[i].startTime + '</td>';
+            htmlString += '<td>' + parsedData[i].endTime + '</td>';
             htmlString += '</tr>';
         }
 

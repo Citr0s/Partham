@@ -2,12 +2,8 @@
 
 class DeployModel
 {
+    public $state;
     public $appName;
-    public $lastBuildDuration;
-    public $lastBuildStatus;
-    public $lastBuildStatusClass;
-    public $lastDeployDuration;
-    public $lastDeployStatus;
-    public $lastDeployStatusClass;
-    public $deployFinishTime;
+    public $startTime;
+    public $endTime;
 }
