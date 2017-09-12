@@ -10,6 +10,7 @@ install:
   - chmod +x coveralls.phar
   - php coveralls.phar --version
   - yarn
+  - yarn add gulp --dev -g
 
 before_script:
   - mkdir -p build/logs
