@@ -29,7 +29,6 @@
     ]
   },
   "scripts": {
-    "release": "gulp",
     "test": "jest"
   }
 }

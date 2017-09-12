@@ -12,12 +12,13 @@ install:
   - yarn
 
 before_script:
+  - npm install -g gulp-cli
   - mkdir -p build/logs
   - ls -al
 
 script:
   - phpunit --bootstrap vendor/autoload.php --colors=always --whitelist=core/ --coverage-clover build/logs/clover.xml core/tests/
-  - npm release
+  - gulp
   - npm test
 
 after_success:
