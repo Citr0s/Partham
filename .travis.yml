@@ -10,7 +10,6 @@ install:
   - chmod +x coveralls.phar
   - php coveralls.phar --version
   - yarn
-  `
 
 before_script:
   - mkdir -p build/logs
@@ -18,8 +17,8 @@ before_script:
 
 script:
   - phpunit --bootstrap vendor/autoload.php --colors=always --whitelist=core/ --coverage-clover build/logs/clover.xml core/tests/
-  - gulp
-  - gulp test
+  - npm release
+  - npm test
 
 after_success:
  - travis_retry php coveralls.phar -v
