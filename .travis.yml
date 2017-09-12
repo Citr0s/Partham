@@ -9,12 +9,16 @@ install:
   - wget -c -nc --retry-connrefused --tries=0 https://github.com/satooshi/php-coveralls/releases/download/v1.0.1/coveralls.phar
   - chmod +x coveralls.phar
   - php coveralls.phar --version
+  - yarn
 
 before_script:
   - mkdir -p build/logs
   - ls -al
 
-script: phpunit --bootstrap vendor/autoload.php --colors=always --whitelist=core/ --coverage-clover build/logs/clover.xml tests/
+script:
+  - phpunit --bootstrap vendor/autoload.php --colors=always --whitelist=core/ --coverage-clover build/logs/clover.xml core/tests/
+  - gulp
+  - gulp test
 
 after_success:
  - travis_retry php coveralls.phar -v

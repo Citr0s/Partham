@@ -6,6 +6,7 @@ var concat = require('gulp-concat');
 var del = require('del');
 var path = require('path');
 var sequence = require('gulp-sequence');
+var jest = require('gulp-jest').default;
 
 const distFolder = 'dist';
 const webFolder = 'web';
@@ -52,6 +53,17 @@ gulp.task('animations', function () {
         .pipe(gulp.dest(distFolder));
 });
 
+gulp.task('test', function () {
+    return gulp.src('web/js/__tests__').pipe(jest({
+        config: {
+            "preprocessorIgnorePatterns": [
+                "<rootDir>/dist/", "<rootDir>/node_modules/"
+            ],
+            "automock": false
+        }
+    }));
+});
+
 gulp.task('watch', ['build'], function () {
     gulp.watch([path.join(webFolder, '**/*.ts')], ['scripts']);
     gulp.watch([path.join(webFolder, '**/*.scss')], ['styles']);
@@ -59,6 +71,7 @@ gulp.task('watch', ['build'], function () {
     gulp.watch([path.join(webFolder, '**/*.ico')], ['icons']);
     gulp.watch([path.join(webFolder, '**/*.jpg')], ['assets']);
     gulp.watch([path.join(webFolder, '**/*.gif')], ['animations']);
+    gulp.watch([path.join(webFolder, '**/*.test.ts')], ['test']);
 });
 
 gulp.task('default', ['release']);
