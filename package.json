@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@types/jest": "^20.0.8",
+    "coveralls": "^2.13.1",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
@@ -26,9 +27,13 @@
       "js",
       "jsx",
       "json"
+    ],
+    "collectCoverageFrom": [
+      "web/js/**"
     ]
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
   }
 }

@@ -20,6 +20,7 @@ script:
   - phpunit --bootstrap vendor/autoload.php --colors=always --whitelist=core/ --coverage-clover build/logs/clover.xml core/tests/
   - gulp
   - npm test
+  - npm run coveralls
 
 after_success:
  - travis_retry php coveralls.phar -v

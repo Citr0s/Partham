@@ -4,3 +4,5 @@ vendor/
 credentials.php
 node_modules/
 dist/
+coverage/
+.coveralls.yml
