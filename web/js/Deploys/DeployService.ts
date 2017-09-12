@@ -1,4 +1,4 @@
-/// <reference path="./DeployRepository"/>
+///<reference path="DeployRepository.ts"/>
 
 class DeployService {
     private _deployRepository: DeployRepository;

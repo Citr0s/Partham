@@ -36,6 +36,9 @@ class DeployService
 
         $this->handleBuildEnd($decodedRequest);
 
+        if ($decodedRequest['state'] === 'failed')
+            return;
+
         $identifier = GuidHelper::newGuid();
 
         $this->handleDeployStart($identifier);
