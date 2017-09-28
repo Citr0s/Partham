@@ -7,7 +7,7 @@ echo 'Updating Composer...';
 composer self-update
 
 echo 'Updating packages...';
-composer update
+composer update --no-dev
 
 echo 'Dumping autoload...';
 composer dump-autoload
