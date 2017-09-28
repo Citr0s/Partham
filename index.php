@@ -11,6 +11,7 @@ $router = new RouteService(array_values(array_filter(explode('/', $_SERVER['REQU
 
 //TODO: change subscribe to ->get() and ->post() etc method in order to make the routes more readable
 $router->subscribe('', 'GET', 'WebController@index');
+$router->subscribe('logs', 'GET', 'WebController@logs');
 
 $data = $router->notify();
 

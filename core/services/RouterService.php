@@ -1,7 +1,6 @@
 <?php namespace Partham\core\services;
 
 use Partham\core\controllers\DashboardController;
-use Partham\core\controllers\WebController;
 use Partham\core\repositories\LogRepository;
 
 class RouterService
@@ -10,11 +9,6 @@ class RouterService
     {
         if (!array_key_exists(0, $request))
             return;
-
-        if ($request[0] === 'logs' && ($method === 'GET')) {
-            WebController::logs();
-            return;
-        }
 
         if ($request[0] === 'deploy' && ($method === 'POST')) {
             unset($request[0]);
