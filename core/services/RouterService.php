@@ -8,10 +8,8 @@ class RouterService
 {
     public static function start($request, $method)
     {
-        if (!array_key_exists(0, $request) || ($request[0] === 'web' && ($method === 'GET'))) {
-            WebController::index();
+        if (!array_key_exists(0, $request))
             return;
-        }
 
         if ($request[0] === 'logs' && ($method === 'GET')) {
             WebController::logs();

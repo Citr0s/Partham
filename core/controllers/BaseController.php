@@ -1,6 +1,5 @@
 <?php namespace Partham\core\controllers;
 
-
 class BaseController
 {
     public static function view(string $fileName)
