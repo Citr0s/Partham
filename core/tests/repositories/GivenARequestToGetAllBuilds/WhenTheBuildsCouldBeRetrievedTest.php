@@ -1,7 +1,7 @@
 <?php
 
 use Partham\core\interfaces\IDatabaseService;
-use Partham\core\repositories\BuildRepository;
+use Partham\core\builds\BuildRepository;
 
 class DatabaseServiceStubForBuildsRepository implements IDatabaseService
 {

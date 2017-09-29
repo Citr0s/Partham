@@ -1,4 +1,4 @@
-<?php namespace Partham\core\types;
+<?php namespace Partham\core\builds;
 
 
 class BuildModel

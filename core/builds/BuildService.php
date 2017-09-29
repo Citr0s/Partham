@@ -1,9 +1,8 @@
-<?php namespace Partham\core\services;
+<?php namespace Partham\core\builds;
 
-use Partham\core\mappers\BuildModelMapper;
 use Partham\core\repositories\AppRepository;
-use Partham\core\repositories\BuildRepository;
 use Partham\core\repositories\UserRepository;
+use Partham\core\services\DatabaseService;
 
 class BuildService
 {

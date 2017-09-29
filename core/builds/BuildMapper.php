@@ -1,4 +1,4 @@
-<?php namespace Partham\core\mappers;
+<?php namespace Partham\core\builds;
 
 use Partham\core\types\BuildRecord;
 
