@@ -4,11 +4,14 @@
 ///<reference path="Builds/BuildFactory.ts"/>
 ///<reference path="Deploys/DeployFactory.ts"/>
 ///<reference path="Logs/LogFactory.ts"/>
+///<reference path="Menu/MenuService.ts"/>
 
 let Promise: any;
 
 class Main {
     constructor() {
+        MenuService.invoke();
+
         if (window.location.pathname.indexOf('logs') > -1) {
             LogFactory.invoke();
             return;
