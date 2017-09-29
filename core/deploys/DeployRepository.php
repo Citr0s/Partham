@@ -1,4 +1,4 @@
-<?php namespace Partham\core\deployer;
+<?php namespace Partham\core\deploys;
 
 use Partham\core\interfaces\IDatabaseService;
 

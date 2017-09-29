@@ -1,6 +1,6 @@
 <?php
 
-use Partham\core\deployer\DeployRepository;
+use Partham\core\deploys\DeployRepository;
 use Partham\core\interfaces\IDatabaseService;
 
 class DatabaseServiceStubForDeploysRepository implements IDatabaseService
