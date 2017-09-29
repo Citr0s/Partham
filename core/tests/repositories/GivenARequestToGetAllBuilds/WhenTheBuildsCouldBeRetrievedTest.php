@@ -83,6 +83,6 @@ class WhenTheBuildsCouldBeRetrievedTest extends PHPUnit\Framework\TestCase
 
     public function testBuildUrlIsMappedCorrectly()
     {
-        $this->assertEquals($this->result[0]->buildUrl, "some-build-url.co.uk");
+        $this->assertEquals($this->result[0]->buildUrl, "some-build-url.com");
     }
 }
