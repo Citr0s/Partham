@@ -14,7 +14,8 @@ class DatabaseServiceStubForBuildsRepository implements IDatabaseService
                 'end_time' => '2017-09-11 19:50',
                 'app_id' => 1,
                 'user_id' => 1,
-                'state' => 'passed'
+                'state' => 'passed',
+                'build_url' => 'some-build-url.com'
             ]
         ];
     }
@@ -41,7 +42,7 @@ class WhenTheBuildsCouldBeRetrievedTest extends PHPUnit\Framework\TestCase
 
     public function setUp()
     {
-        $subject = new BuildRepository(new DatabaseServiceStubForDeploysRepository());
+        $subject = new BuildRepository(new DatabaseServiceStubForBuildsRepository());
         $this->result = $subject->getAll();
     }
 
@@ -78,5 +79,10 @@ class WhenTheBuildsCouldBeRetrievedTest extends PHPUnit\Framework\TestCase
     public function testStateIsMappedCorrectly()
     {
         $this->assertEquals($this->result[0]->state, "passed");
+    }
+
+    public function testBuildUrlIsMappedCorrectly()
+    {
+        $this->assertEquals($this->result[0]->buildUrl, "some-build-url.com");
     }
 }
