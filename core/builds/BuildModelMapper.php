@@ -2,8 +2,6 @@
 
 use Partham\core\repositories\AppRepository;
 use Partham\core\repositories\UserRepository;
-use Partham\core\types\BuildRecord;
-use Partham\core\types\BuildModel;
 
 class BuildModelMapper
 {

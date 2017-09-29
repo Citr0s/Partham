@@ -1,7 +1,5 @@
 <?php namespace Partham\core\builds;
 
-use Partham\core\types\BuildRecord;
-
 class BuildMapper
 {
     public static function map($record)
