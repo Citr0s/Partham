@@ -15,7 +15,7 @@ class BuildRepository
     {
         $response = [];
 
-        $records = $this->database->getAll('builds');
+        $records = $this->database->getAll('builds', false, 15);
 
         foreach ($records as $record)
             $response[] = BuildMapper::map($record);

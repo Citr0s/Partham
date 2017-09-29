@@ -15,7 +15,7 @@ class DeployRepository
     {
         $response = [];
 
-        $records = $this->database->getAll('deploys');
+        $records = $this->database->getAll('deploys', false, 15);
 
         foreach ($records as $record)
             $response[] = DeployMapper::map($record);
