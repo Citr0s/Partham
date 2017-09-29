@@ -9,40 +9,35 @@ use Partham\core\services\ServerService;
 
 class DashboardController
 {
-    private $deployService;
-    private $serverService;
-    private $buildService;
-    private $logService;
-
-    function __construct()
-    {
-        $this->deployService = new DeployService();
-        $this->buildService = new BuildService();
-        $this->serverService = new ServerService();
-        $this->logService = new LogService(new LogRepository(new DatabaseService()));
-    }
-
-    public function deploys()
+    public static function deploys()
     {
         header('Content-Type: application/json');
-        echo json_encode($this->deployService->getAll());
+
+        $deployService = new DeployService();
+        echo json_encode($deployService->getAll());
     }
 
-    public function server()
+    public static function server()
     {
         header('Content-Type: application/json');
-        echo json_encode($this->serverService->info());
+
+        $serverService = new ServerService();
+        echo json_encode($serverService->info());
     }
 
-    public function builds()
+    public static function builds()
     {
         header('Content-Type: application/json');
-        echo json_encode($this->buildService->getAll());
+
+        $buildService = new BuildService();
+        echo json_encode($buildService->getAll());
     }
 
-    public function logs()
+    public static function logs()
     {
         header('Content-Type: application/json');
-        echo json_encode($this->logService->getAll());
+
+        $logService = new LogService(new LogRepository(new DatabaseService()));
+        echo json_encode($logService->getAll());
     }
 }
