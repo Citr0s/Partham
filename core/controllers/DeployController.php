@@ -1,6 +1,7 @@
 <?php namespace Partham\core\controllers;
 
-use Partham\core\services\DeployService;
+
+use Partham\core\deploys\DeployService;
 
 class DeployController
 {

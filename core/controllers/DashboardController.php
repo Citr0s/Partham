@@ -1,9 +1,9 @@
 <?php namespace Partham\core\controllers;
 
+use Partham\core\builds\BuildService;
+use Partham\core\deploys\DeployService;
 use Partham\core\repositories\LogRepository;
 use Partham\core\services\DatabaseService;
-use Partham\core\services\DeployService;
-use Partham\core\services\BuildService;
 use Partham\core\services\LogService;
 use Partham\core\services\ServerService;
 
