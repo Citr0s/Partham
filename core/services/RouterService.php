@@ -10,14 +10,6 @@ class RouterService
         if (!array_key_exists(0, $request))
             return;
 
-        if ($request[0] === 'commit' && ($method === 'POST')) {
-            unset($request[0]);
-
-            $logger = new DeployService();
-            $logger->handleCommit(file_get_contents('php://input'));
-            return;
-        }
-
         if ($request[0] === 'api' && ($method === 'GET')) {
             unset($request[0]);
             $request = array_values($request);

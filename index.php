@@ -13,6 +13,7 @@ $router = new RouteService(array_values(array_filter(explode('/', $_SERVER['REQU
 $router->subscribe('', 'GET', 'WebController@index');
 $router->subscribe('logs', 'GET', 'WebController@logs');
 $router->subscribe('deploy/{appName}', 'POST', 'DeployController@deploy');
+$router->subscribe('commit', 'POST', 'DeployController@commit');
 
 $data = $router->notify();
 

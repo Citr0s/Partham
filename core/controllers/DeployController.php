@@ -11,4 +11,12 @@ class DeployController
 
         header("HTTP/1.0 200 OK");
     }
+
+    public static function commit($urlParameters, $requestBody)
+    {
+        $deployService = new DeployService();
+        $deployService->handleCommit($requestBody);
+
+        header("HTTP/1.0 200 OK");
+    }
 }
