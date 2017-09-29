@@ -1,7 +1,7 @@
 <?php
 
-use Partham\core\interfaces\ILogRepository;
-use Partham\core\services\LogService;
+use Partham\core\logs\ILogRepository;
+use Partham\core\logs\LogService;
 
 class WhenTheLogModelsCouldBeSavedTest extends PHPUnit\Framework\TestCase
 {

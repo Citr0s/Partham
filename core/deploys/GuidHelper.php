@@ -1,4 +1,4 @@
-<?php namespace Partham\core\helpers;
+<?php namespace Partham\core\deploys;
 
 
 class GuidHelper

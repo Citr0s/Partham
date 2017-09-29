@@ -1,6 +1,5 @@
 <?php namespace Partham\core\deploys;
 
-use Partham\core\helpers\GuidHelper;
 use Partham\core\repositories\AppRepository;
 use Partham\core\services\DatabaseService;
 

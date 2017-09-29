@@ -1,4 +1,4 @@
-<?php namespace Partham\core\mappers;
+<?php namespace Partham\core\logs;
 
 use Partham\core\types\LogModel;
 use Partham\core\types\LogRecord;

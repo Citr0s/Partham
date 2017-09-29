@@ -1,7 +1,4 @@
-<?php namespace Partham\core\services;
-
-use Partham\core\interfaces\ILogRepository;
-use Partham\core\mappers\LogModelMapper;
+<?php namespace Partham\core\logs;
 
 class LogService
 {

@@ -1,8 +1,8 @@
 <?php
 
-use Partham\core\interfaces\ILogRepository;
-use Partham\core\services\LogService;
-use Partham\core\types\LogRecord;
+use Partham\core\logs\ILogRepository;
+use Partham\core\logs\LogService;
+use Partham\core\logs\LogRecord;
 
 class LogRepositoryStub implements ILogRepository
 {

@@ -1,4 +1,4 @@
-<?php namespace Partham\core\interfaces;
+<?php namespace Partham\core\logs;
 
 interface ILogRepository
 {

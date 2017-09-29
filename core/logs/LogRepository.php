@@ -1,8 +1,6 @@
-<?php namespace Partham\core\repositories;
+<?php namespace Partham\core\logs;
 
 use Partham\core\interfaces\IDatabaseService;
-use Partham\core\interfaces\ILogRepository;
-use Partham\core\mappers\LogMapper;
 
 class LogRepository implements ILogRepository
 {

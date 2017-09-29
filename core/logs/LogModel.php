@@ -1,9 +1,8 @@
-<?php namespace Partham\core\types;
+<?php namespace Partham\core\logs;
 
-
-class LogRecord
+class LogModel
 {
-    public $app;
+    public $appName;
     public $severity;
     public $message;
     public $exception;
