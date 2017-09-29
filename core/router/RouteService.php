@@ -13,7 +13,7 @@ class RouteService
         $this->action = $action;
     }
 
-    public function subscribe($url, $action, $controller)
+    private function subscribe($url, $action, $controller)
     {
         $route = new Route();
         $route->url = $url;
@@ -21,6 +21,16 @@ class RouteService
         $route->controller = $controller;
 
         array_push($this->routes, $route);
+    }
+
+    public function get($url, $controller)
+    {
+        $this->subscribe($url, 'GET', $controller);
+    }
+
+    public function post($url, $controller)
+    {
+        $this->subscribe($url, 'POST', $controller);
     }
 
     public function notify()

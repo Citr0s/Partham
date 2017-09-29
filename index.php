@@ -8,16 +8,18 @@ use Partham\core\router\RouteService;
 //TODO: the method will be used to determine route names passed into the methods
 $router = new RouteService(array_values(array_filter(explode('/', $_SERVER['REQUEST_URI']))), $_SERVER['REQUEST_METHOD']);
 
-//TODO: change subscribe to ->get() and ->post() etc method in order to make the routes more readable
-$router->subscribe('', 'GET', 'WebController@index');
-$router->subscribe('logs', 'GET', 'WebController@logs');
-$router->subscribe('deploy/{appName}', 'POST', 'DeployController@deploy');
-$router->subscribe('commit', 'POST', 'DeployController@commit');
-$router->subscribe('api/deploys', 'GET', 'DashboardController@deploys');
-$router->subscribe('api/builds', 'GET', 'DashboardController@builds');
-$router->subscribe('api/usage', 'GET', 'DashboardController@server');
-$router->subscribe('api/logs', 'GET', 'DashboardController@logs');
-$router->subscribe('api/log/{severity}', 'POST', 'LogController@save');
+$router->get('', 'WebController@index');
+$router->get('logs', 'WebController@logs');
+
+$router->post('deploy/{appName}', 'DeployController@deploy');
+$router->post('commit', 'DeployController@commit');
+
+$router->get('api/deploys', 'DashboardController@deploys');
+$router->get('api/builds', 'DashboardController@builds');
+$router->get('api/usage', 'DashboardController@server');
+
+$router->get('api/logs', 'DashboardController@logs');
+$router->post('api/log/{severity}', 'LogController@save');
 
 $data = $router->notify();
 
