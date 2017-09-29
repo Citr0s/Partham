@@ -1,7 +1,7 @@
 <?php
 
 use Partham\core\interfaces\IDatabaseService;
-use Partham\core\repositories\LogRepository;
+use Partham\core\logs\LogRepository;
 
 class DatabaseServiceStubForSaveLogsRepository implements IDatabaseService
 {

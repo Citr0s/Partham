@@ -1,8 +1,5 @@
 <?php namespace Partham\core\logs;
 
-use Partham\core\types\LogModel;
-use Partham\core\types\LogRecord;
-
 class LogModelMapper
 {
     public static function map(LogRecord $record): LogModel
