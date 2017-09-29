@@ -26,13 +26,29 @@ class RouteService
     public function notify()
     {
         foreach ($this->routes as $route) {
+            $routeUrlArray = explode('/', $route->url);
+            $urlParams = [];
+
+            for ($i = 0; $i < sizeof($routeUrlArray); $i++) {
+                if (strpos($routeUrlArray[$i], '{') !== false && strpos($routeUrlArray[$i], '}') !== false) {
+                    $varName = ltrim($routeUrlArray[$i], '{');
+                    $varName = rtrim($varName, '}');
+
+                    if (array_key_exists($i, $this->url)) {
+                        $urlParams[$varName] = $this->url[$i];
+                        $routeUrlArray[$i] = $this->url[$i];
+                        $route->url = implode('/', $routeUrlArray);
+                    }
+                }
+            }
+
             if ($route->url === implode('/', $this->url) && $route->action === $this->action) {
                 $controllerInfo = explode('@', $route->controller);
                 $class = "\Partham\core\controllers\\$controllerInfo[0]";
                 $method = "{$controllerInfo[1]}";
                 $newClass = new $class();
 
-                return $newClass->$method();
+                return $newClass->$method($urlParams, file_get_contents('php://input'));
             }
         }
 
