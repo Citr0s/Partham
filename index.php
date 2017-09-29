@@ -4,8 +4,6 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Partham\core\router\RouteService;
 
-//TODO: extract the splitting of the url into a helper method so that it can be reused when using ->get() etc
-//TODO: the method will be used to determine route names passed into the methods
 $router = new RouteService(array_values(array_filter(explode('/', $_SERVER['REQUEST_URI']))), $_SERVER['REQUEST_METHOD']);
 
 $router->get('', 'WebController@index');
