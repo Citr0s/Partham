@@ -27,7 +27,7 @@ class BuildFactory {
         for (let i = 0; i < parsedData.length; i++) {
             htmlString += '<tr>';
             htmlString += '<td>' + parsedData[i].appName + '</td>';
-            htmlString += '<td><div class="state-box ' + parsedData[i].state + '">' + parsedData[i].state + '</div></td>';
+            htmlString += '<td><a target="_blank" href="' + parsedData[i].buildUrl + '"><div class="state-box ' + parsedData[i].state + '">' + parsedData[i].state + '</div></a></td>';
             htmlString += '<td>' + this.timestampToString(parsedData[i].startTime) + '</td>';
             htmlString += '<td>' + this.timestampToString(parsedData[i].endTime) + '</td>';
             htmlString += '</tr>';
