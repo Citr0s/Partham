@@ -21,19 +21,19 @@ class BuildService {
     displayBuilds(data) {
         let parsedData = JSON.parse(data);
 
+
         if (parsedData[0].state === 'passed') {
-            document.querySelector('.process-box').setAttribute('style', 'border: 1px solid #2ecc71;');
-            document.querySelector('.process-box').setAttribute('style', 'display:none;');
+            document.querySelector('.process-box').setAttribute('style', 'border: 1px solid #2ecc71; display:none;');
             return;
         }
 
         if (parsedData[0].state === 'failed') {
-            document.querySelector('.process-box').setAttribute('style', 'border: 1px solid #e74c3c;');
+            document.querySelector('.process-box .message').innerHTML = `<span style="font-weight:bold;">${parsedData[0].appName}</span> has failed to build.`;
+            document.querySelector('.process-box').setAttribute('style', 'border: 1px solid #e74c3c; display:block;');
             return;
         }
 
-        document.querySelector('.process-box').setAttribute('style', 'border: 1px solid #026266;');
-        document.querySelector('.process-box').setAttribute('style', 'display:block;');
+        document.querySelector('.process-box').setAttribute('style', 'border: 1px solid #026266;display:block;');
 
         if (parsedData[0].state === null) {
             document.querySelector('.process-box .build-time').setAttribute('style', 'display:none;');
