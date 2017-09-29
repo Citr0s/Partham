@@ -1,9 +1,8 @@
-<?php namespace Partham\core\services;
+<?php namespace Partham\core\deployer;
 
 use Partham\core\helpers\GuidHelper;
-use Partham\core\mappers\DeployModelMapper;
 use Partham\core\repositories\AppRepository;
-use Partham\core\repositories\DeployRepository;
+use Partham\core\services\DatabaseService;
 
 class DeployService
 {

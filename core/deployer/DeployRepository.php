@@ -1,7 +1,6 @@
-<?php namespace Partham\core\repositories;
+<?php namespace Partham\core\deployer;
 
 use Partham\core\interfaces\IDatabaseService;
-use Partham\core\mappers\DeployMapper;
 
 class DeployRepository
 {

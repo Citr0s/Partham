@@ -1,8 +1,6 @@
-<?php namespace Partham\core\mappers;
+<?php namespace Partham\core\deployer;
 
 use Partham\core\repositories\AppRepository;
-use Partham\core\types\DeployRecord;
-use Partham\core\types\DeployModel;
 
 class DeployModelMapper
 {
