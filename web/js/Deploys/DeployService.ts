@@ -7,15 +7,15 @@ class DeployService {
         this._deployRepository = new DeployRepository();
     }
 
-    getUsage(callback: any) {
-        return this._deployRepository.getUsage(callback);
+    getUsage() {
+        return this._deployRepository.getUsage();
     }
 
-    getDeploys(callback: any) {
-        return this._deployRepository.getDeploys(callback);
+    getDeploys() {
+        return this._deployRepository.getDeploys();
     }
 
-    getBuilds(callback: any) {
-        return this._deployRepository.getBuilds(callback);
+    getBuilds() {
+        return this._deployRepository.getBuilds();
     }
 }

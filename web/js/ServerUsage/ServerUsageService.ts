@@ -54,7 +54,7 @@ class ServerUsageService {
     }
 
     checkUsage() {
-        this.deployService.getUsage((data) => {
+        this.deployService.getUsage().then((data) => {
             this.displayUsage(data);
             setTimeout(() => {
                 this.checkUsage();

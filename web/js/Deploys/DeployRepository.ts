@@ -7,24 +7,18 @@ class DeployRepository {
         this._http = new HttpClient();
     }
 
-    getUsage(callback: any) {
+    getUsage() {
         this._http.setParams('', 'get');
-        this._http.invoke('api/usage').then((data) => {
-            callback(data);
-        });
+        return this._http.invoke('api/usage');
     }
 
-    getDeploys(callback: any) {
+    getDeploys() {
         this._http.setParams('', 'get');
-        this._http.invoke('api/deploys').then((data) => {
-            callback(data);
-        });
+        return this._http.invoke('api/deploys');
     }
 
-    getBuilds(callback: any) {
+    getBuilds() {
         this._http.setParams('', 'get');
-        this._http.invoke('api/builds').then((data) => {
-            callback(data);
-        });
+        return this._http.invoke('api/builds');
     }
 }

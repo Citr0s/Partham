@@ -10,7 +10,7 @@ class BuildService {
     }
 
     checkBuilds() {
-        this.deployService.getBuilds((data) => {
+        this.deployService.getBuilds().then((data) => {
             this.displayBuilds(data);
             setTimeout(() => {
                 this.checkBuilds();

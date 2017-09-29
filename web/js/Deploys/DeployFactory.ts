@@ -12,7 +12,7 @@ class DeployFactory {
     }
 
     checkDeploys() {
-        this.deployService.getDeploys((data) => {
+        this.deployService.getDeploys().then((data) => {
             this.displayDeploys(data);
             setTimeout(() => {
                 this.checkDeploys();
