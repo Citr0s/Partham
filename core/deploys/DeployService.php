@@ -79,7 +79,7 @@ class DeployService
 
     public function handleBuildEnd($payload)
     {
-        $this->database->update('builds', ['reference' => $payload['commit']], ['end_time' => date("Y-m-d H:i:s"), 'state' => $payload['state']]);
+            $this->database->update('builds', ['reference' => $payload['commit']], ['end_time' => date("Y-m-d H:i:s"), 'state' => $payload['state'], 'build_url' => $payload['build_url']]);
     }
 
     public function handleDeployStart($identifier)
