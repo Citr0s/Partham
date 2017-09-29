@@ -1,26 +1,29 @@
-/// <reference path="../Http/Http"/>
+/// <reference path="../Http/HttpClient"/>
 
 class DeployRepository {
-    private _http: Http;
+    private _http: HttpClient;
 
     constructor() {
-        this._http = new Http();
+        this._http = new HttpClient();
     }
 
     getUsage(callback: any) {
-        return this._http.get('api/usage', (data) => {
+        this._http.setParams('', 'get');
+        this._http.invoke('api/usage').then((data) => {
             callback(data);
         });
     }
 
     getDeploys(callback: any) {
-        return this._http.get('api/deploys', (data) => {
+        this._http.setParams('', 'get');
+        this._http.invoke('api/deploys').then((data) => {
             callback(data);
         });
     }
 
     getBuilds(callback: any) {
-        return this._http.get('api/builds', (data) => {
+        this._http.setParams('', 'get');
+        this._http.invoke('api/builds').then((data) => {
             callback(data);
         });
     }

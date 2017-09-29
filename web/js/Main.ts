@@ -4,6 +4,8 @@
 ///<reference path="Deploys/DeployFactory.ts"/>
 ///<reference path="Logs/LogFactory.ts"/>
 
+let Promise: any;
+
 class Main {
     constructor() {
         if (window.location.pathname.indexOf('logs') > -1) {

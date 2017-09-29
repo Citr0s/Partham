@@ -1,14 +1,15 @@
-/// <reference path="../Http/Http"/>
+/// <reference path="../Http/HttpClient"/>
 
 class LogRepository {
-    private _http: Http;
+    private _http: HttpClient;
 
     constructor() {
-        this._http = new Http();
+        this._http = new HttpClient();
     }
 
     getLogs(callback: any) {
-        return this._http.get('api/logs', (data) => {
+        this._http.setParams('', 'get');
+        this._http.invoke('api/logs').then((data) => {
             callback(data);
         });
     }

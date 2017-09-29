@@ -23,7 +23,8 @@ gulp.task('scripts', function () {
         .pipe(sourcemaps.init())
         .pipe(ts({
             noImplicitAny: false,
-            out: 'app.js'
+            out: 'app.js',
+            skipLibCheck: true
         }))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(distFolder));
