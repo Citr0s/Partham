@@ -101,6 +101,14 @@ body {
   background-color: $secondary-color;
   border-radius: 5px;
 
+  a {
+    color: $primary-color;
+
+    &:hover {
+      color: darken($primary-color, 10%);
+    }
+  }
+
   .loading-gif {
     width: 300px;
   }
