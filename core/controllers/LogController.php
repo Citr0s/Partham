@@ -11,6 +11,6 @@ class LogController
         header('Content-Type: application/json');
 
         $logService = new LogService(new LogRepository(new DatabaseService()));
-        $logService->invoke($urlParameters['severity'], file_get_contents('php://input'));
+        $logService->invoke($urlParameters['severity'], $requestBody);
     }
 }
