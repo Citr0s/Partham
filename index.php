@@ -8,6 +8,7 @@ $router = new RouteService(array_values(array_filter(explode('/', $_SERVER['REQU
 
 $router->get('', 'WebController@index');
 $router->get('logs', 'WebController@logs');
+$router->get('builds', 'WebController@builds');
 
 $router->post('deploy/{appName}', 'DeployController@deploy');
 $router->post('commit', 'DeployController@commit');

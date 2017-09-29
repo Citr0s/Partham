@@ -11,4 +11,9 @@ class WebController extends BaseController
     {
         self::view('logs');
     }
+
+    public static function builds()
+    {
+        self::view('builds');
+    }
 }

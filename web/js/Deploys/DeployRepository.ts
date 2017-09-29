@@ -1,5 +1,3 @@
-/// <reference path="../Http/HttpClient"/>
-
 class DeployRepository {
     private _http: HttpClient;
 

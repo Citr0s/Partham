@@ -15,7 +15,7 @@ class LogFactory {
         this.logService.getLogs((data) => {
             this.displayLogs(data);
             /*setTimeout(() => {
-                this.checkLogs();
+                this.checkBuilds();
             }, 5000);*/
         });
     }

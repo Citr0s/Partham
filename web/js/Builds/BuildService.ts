@@ -9,8 +9,12 @@ class BuildService {
         this.checkBuilds();
     }
 
+    getBuilds() {
+        return this.deployService.getBuilds();
+    }
+
     checkBuilds() {
-        this.deployService.getBuilds().then((data) => {
+        this.getBuilds().then((data) => {
             this.displayBuilds(data);
             setTimeout(() => {
                 this.checkBuilds();
