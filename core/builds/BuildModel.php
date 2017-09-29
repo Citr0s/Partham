@@ -8,4 +8,5 @@ class BuildModel
     public $endTime;
     public $userName;
     public $state;
+    public $buildUrl;
 }

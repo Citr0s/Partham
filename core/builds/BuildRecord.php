@@ -8,4 +8,5 @@ class BuildRecord
     public $startTime;
     public $reference;
     public $state;
+    public $buildUrl;
 }

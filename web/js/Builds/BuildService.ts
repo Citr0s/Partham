@@ -28,7 +28,7 @@ class BuildService {
         }
 
         if (parsedData[0].state === 'failed') {
-            document.querySelector('.process-box .message').innerHTML = `<span style="font-weight:bold;">${parsedData[0].appName}</span> has failed to build.`;
+            document.querySelector('.process-box .message').innerHTML = `<a href="${parsedData[0].buildUrl}"><span style="font-weight:bold;">${parsedData[0].appName}</span> has failed to build.</a>`;
             document.querySelector('.process-box').setAttribute('style', 'border: 1px solid #e74c3c; display:block;');
             return;
         }

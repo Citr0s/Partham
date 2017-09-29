@@ -22,6 +22,7 @@ class BuildModelMapper
         $buildModel->startTime = strtotime($record->startTime);
         $buildModel->endTime = strtotime($record->endTime);
         $buildModel->state = $record->state;
+        $buildModel->buildUrl = $record->buildUrl;
 
         return $buildModel;
     }

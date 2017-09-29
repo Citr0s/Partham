@@ -11,6 +11,7 @@ class BuildMapper
         $build->app = $record['app_id'];
         $build->user = $record['user_id'];
         $build->state = $record['state'];
+        $build->buildUrl = $record['build_url'];
 
         return $build;
     }
