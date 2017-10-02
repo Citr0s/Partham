@@ -1,6 +1,5 @@
 <?php namespace Partham\core\repositories;
 
-use Partham\core\deploys\DeployService;
 use Partham\core\interfaces\IDatabaseService;
 
 class AppRepository
@@ -20,6 +19,9 @@ class AppRepository
 
     public function getIdByName($appName)
     {
+        // TODO: when app is not found then the default $appName to create a new one
+        // TODO: later a dashboard could be created to create a mapping with a nicer name
+
         switch ($appName) {
             case 'game':
                 $translatedName = 'TypeScript Game';
