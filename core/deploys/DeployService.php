@@ -9,6 +9,7 @@ class DeployService
     private $database;
     private $deployRepository;
     private $appRepository;
+    private $currentApp;
 
     function __construct()
     {
@@ -21,6 +22,8 @@ class DeployService
     {
         if (!in_array($appName, $this->allowedApps))
             return;
+
+        $this->currentApp = $appName;
 
         if (strpos($request, 'payload=') >= 0)
             $request = str_replace('payload=', '', urldecode($request));
@@ -64,12 +67,17 @@ class DeployService
         return $response;
     }
 
+    private function getAppIdFromName($appName)
+    {
+        return $this->appRepository->getIdByName($appName);
+    }
+
     public function handleCommit($payload)
     {
         $payload = json_decode($payload, true);
         $reference = $payload['head_commit']['id'];
 
-        $this->database->insert('builds', ['reference', 'app_id', 'user_id'], [$reference, 1, 1]);
+        $this->database->insert('builds', ['reference', 'app_id', 'user_id'], [$reference, $this->getAppIdFromName($this->currentApp), 1]);
     }
 
     public function handleBuildStart($payload)
@@ -79,12 +87,12 @@ class DeployService
 
     public function handleBuildEnd($payload)
     {
-            $this->database->update('builds', ['reference' => $payload['commit']], ['end_time' => date("Y-m-d H:i:s"), 'state' => $payload['state'], 'build_url' => $payload['build_url']]);
+        $this->database->update('builds', ['reference' => $payload['commit']], ['end_time' => date("Y-m-d H:i:s"), 'state' => $payload['state'], 'build_url' => $payload['build_url']]);
     }
 
     public function handleDeployStart($identifier)
     {
-        $this->database->insert('deploys', ['reference', 'app_id', 'user_id', 'start_time', 'state'], [$identifier, 1, 1, date("Y-m-d H:i:s"), 'deploying']);
+        $this->database->insert('deploys', ['reference', 'app_id', 'user_id', 'start_time', 'state'], [$identifier, $this->getAppIdFromName($this->currentApp), 1, date("Y-m-d H:i:s"), 'deploying']);
     }
 
     public function handleDeployEnd($identifier, $state)
