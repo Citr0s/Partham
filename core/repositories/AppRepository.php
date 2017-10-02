@@ -37,7 +37,9 @@ class AppRepository
                 break;
         }
 
-        $record = $this->database->get(['id'], 'apps', ['name', $translatedName]);
+
+        // TODO: database class should handle difference between string and number, if not number then add quotes
+        $record = $this->database->get(['id'], 'apps', ['name', "'{$translatedName}'"]);
         return $record['id'];
     }
 }
